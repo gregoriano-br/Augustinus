@@ -1,2 +1,0 @@
-- Salmos
-- Evangelho revisar

@@ -1,5 +1,4 @@
-{
-    "define": [
+[
         {
             "name": "Prefácio tom solene",
             "type": "prefacio",
@@ -211,4 +210,3 @@
             "replace": []
         }
     ]
-}
