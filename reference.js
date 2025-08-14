@@ -1,4 +1,19 @@
+const ADVANCED_CHECKBOX = document.getElementById('advanced');
+const ADVANCED_ELEMENTS = document.querySelectorAll('.advanced');
+const API_POCKET_CHECKBOX = document.getElementById('api-pocket');
+const API_POCKET_ELEMENTS = document.querySelectorAll('.api-pocket');
 
+ADVANCED_CHECKBOX.addEventListener('change', function () {
+	ADVANCED_ELEMENTS.forEach(element => {
+		element.style.display = this.checked ? 'block' : 'none';
+	});
+});
+
+API_POCKET_CHECKBOX.addEventListener('change', function () {
+	API_POCKET_ELEMENTS.forEach(element => {
+		element.style.display = this.checked ? 'block' : 'none';
+	});
+});
 function processGabc(gabcOutput) {
     const parts = gabcOutput.split(/(<sp>[VR]\/<\/sp>)/g);
     const sections = [];
@@ -44,8 +59,65 @@ function processGabc(gabcOutput) {
     return result;
 }
 
-var selected_model;
+async function getPocketTerco() {
+	const date = document.getElementById('date').value;
+	const base_url = "https://pocket.augustinus.workers.dev";
+	const oracaoDoDiaElement = document.getElementById('oracaoDoDia');
+	const sobreAsOferendasElement = document.getElementById('sobreAsOferendas');
+	const depoisDaComunhaoElement = document.getElementById('depoisDaComunhao');
+	const evangelhoElement = document.getElementById('evangelho');
+	const salmolmoElement = document.getElementById('salmo');
 
+	const url = `${base_url}?date=${date}`;
+	try {
+		const token = localStorage.getItem('token');
+		const response = await fetch(url, {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+		});
+		const data = await response.json();
+		// Update your element assignments like this:
+		oracaoDoDiaElement.value = data.results.oracaoDoDia;
+		sobreAsOferendasElement.value = data.results.sobreAsOferendas;
+		depoisDaComunhaoElement.value = data.results.depoisDaComunhao;
+		evangelhoElement.innerHTML = data.results.evangelhoOriginal;
+		salmolmoElement.innerHTML = data.results.salmo;
+
+		// return await response.json();
+	} catch (error) {
+		return console.error('Error:', error);
+	}
+}
+
+var selected_model;
+document.addEventListener('DOMContentLoaded', async function () {
+	const SELECT = document.getElementById('chant-type');
+
+	const response = await fetch('models.json');
+	const MODELS_JSON = await response.text();
+
+	const DATA = JSON.parse(MODELS_JSON);
+	const MODELS = DATA.define;
+	MODELS.forEach((model, index) => {
+		const option = new Option(model.name, index);
+		SELECT.add(option);
+	});
+
+	SELECT.addEventListener('change', function () {
+		const selectedModel = MODELS[this.value];
+		if (selectedModel) {
+			selected_model = selectedModel;
+		}
+	});
+
+	SELECT.dispatchEvent(new Event('change'));
+}); function copyGabc() {
+	const gabcOutput = document.getElementById('gabc').value;
+	navigator.clipboard.writeText(gabcOutput);
+}
+
+// --- CHANGE START: The entire `generateGabcNotation` function is refactored ---
 function generateGabcNotation() {
 	// --- Get all user settings first ---
 	const INPUT_TEXT = document.getElementById('text').value;
@@ -54,6 +126,8 @@ function generateGabcNotation() {
 	const SHOULD_ADD_OPTIONAL_START = document.getElementById('entoation').checked;
 	const SHOULD_REMOVE_NEWLINE = document.getElementById('newline').checked;
 	const SHOULD_REMOVE_PARENTESIS = document.getElementById('parenteses').checked;
+	const LATEX_MODE = document.getElementById('latex').checked;
+	const GABC_OUTPUT_ELEMENT = document.getElementById('gabc');
 
 	const syllableSeparator = "@";
 	definirSeparador(syllableSeparator);
@@ -269,5 +343,14 @@ function generateGabcNotation() {
  		gabcOutput = clef + gabcOutput;
  	}
 	
-	return processGabc(gabcOutput);
+	gabcOutput = processGabc(gabcOutput);
+	
+	if (LATEX_MODE) {
+		gabcOutput = gabcOutput.replaceAll("<sp>V/</sp>", "<c><sp>V/</sp></c>. ");
+		gabcOutput = gabcOutput.replaceAll("<sp>R/</sp>", "<c><sp>R/</sp></c>. ")
+	}
+	
+	GABC_OUTPUT_ELEMENT.value = gabcOutput;
+	initializeAndLayoutChant("gabc", "svg-final");
 }
+// --- CHANGE END ---
