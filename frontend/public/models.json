@@ -1,81 +1,11 @@
 [
     {
-        "name": "Corda de récita",
-        "type": "custom",
-        "tom": "simples",
-        "optional_end": "",
-        "optional_start": "(c4) <sp>V/</sp>",
-        "start": "(c4) <sp>V/</sp>",
-        "default": "(h) (hr hr hr) (::)",
-        "patterns": [],
-        "find": [],
-        "replace": []
-    },
-    {
-        "name": "Personalizado",
-        "type": "custom",
-        "tom": "solene",
-        "optional_end": "",
-        "optional_start": "(c4) <sp>V/</sp>",
-        "start": "(c4) <sp>V/</sp>",
-        "default": "(h) (hr hr hr) (::)",
-        "patterns": [],
-        "find": [],
-        "replace": []
-    },
-    {
-        "name": "Prefácio tom solene",
-        "type": "prefacio",
-        "tom": "solene",
-        "optional_end": "",
-        "optional_start": "(c3) <sp>V/</sp> O(e) Se(f)nhor(g) es(g)te(g)ja(e) con(f)vos(gf)co.(f) (::) <sp>R/</sp> E(e)l{e‿e}s(f)tá(g) no(g) mei(g)o(e) de(f) nós(gf) (::Z) <sp>V/</sp> Co(f)ra(g)ções(h) ao(g) al(fg)to.(fe) (::) <sp>R/</sp> O(g) nos(g)so(g) co(f)ra(g)ção(h) es(g)tá(f) em(g) Deus.(fe) (::Z) <sp>V/</sp> De(gf)mos(e) gra(ef)ças(g) ao(f) Se(g)nhor(hg) nos(fe)so(fg) Deus.(fgf) (::) <sp>R/</sp> É(f) nos(f)so(f) de(g)ver(h) e(g) nos(g)sa(f) sal(g)va(f)ção.(fe) (::Z) ",
-        "start": "(c3) <sp>V/</sp> ",
-        "default": "(g) (gr gr gr) (fe) (ef) (g) (fgr1) (fr) (f) (:)",
-        "patterns": [
-            {
-                "symbol": "*",
-                "gabc": "(f) (hr hr hr) (gf) (fgr1) (gr) (g) (;)"
-            },
-            {
-                "symbol": "+",
-                "gabc": "(f) (gr gr gr) (hr1) (gr) (g) (,)"
-            }
-        ],
-        "find": [
-            "Por isso,"
-        ],
-        "replace": [
-            "Por(f) is(ef)so,(f) (,) "
-        ]
-    },
-    {
-        "name": "Prefácio tom simples",
-        "type": "prefacio",
-        "tom": "simples",
-        "optional_end": "",
-        "optional_start": "(c3) <sp>V/</sp> O(f) Se(g)nhor(h) es(h)te(h)ja(f) con(g)vos(h)co.(g) (::) <sp>R/</sp> E(f)l{e‿e}s(g)tá(h) no(h) mei(h)o(f) de(g) nós(hg) (::Z) <sp>V/</sp> Co(g)ra(h)ções(i) ao(h) al(g)to.(g) (::) <sp>R/</sp> O(h) nos(h)so(h) co(g)ra(h)ção(i) es(h)tá(g) em(h) Deus.(gf) (::Z) <sp>V/</sp> De(ih)mos(g) gra(h)ças(h) ao(h) Se(h)nhor(h) nos(f)so(g) Deus.(hg) (::) <sp>R/</sp> É(g) nos( g)so(g) de(h)ver(i) e(h) nos(h)sa(g) sal(h)va(g)ção.(gf) (::Z)",
-        "start": "(c3) <sp>V/</sp> ",
-        "default": "(g) (gr gr gr) (e) (f) (gr1) (fr) (f) (:)",
-        "patterns": [
-            {
-                "symbol": "*",
-                "gabc": "(f) (hr hr hr) (g) (f) (gr1) (gr) (g) (;)"
-            },
-            {
-                "symbol": "+",
-                "gabc": "(g) (gr gr gr) (hr1) (gr) (g) (,)"
-            }
-        ],
-        "find": [],
-        "replace": []
-    },
-    {
         "name": "Oração tom solene",
         "type": "oracao",
         "tom": "solene",
-        "optional_end": "<sp>R/</sp> A(g) mém.(gh) (::)",
-        "optional_start": "(c4) <sp>V/</sp> O(h)re(gh)mos.(h) (::)",
-        "start": "(c4) <sp>V/</sp> ",
+        "optional_end": "<c><sp>R/</sp>.</c> A(g) mém.(gh) (::)",
+        "optional_start": "(c4) <c><sp>V/</sp>.</c> O(h)re(gh)mos.(h) (::)",
+        "start": "(c4) <c><sp>V/</sp>.</c> ",
         "default": "(g) (hr hr hr) (g) (g) (hr1) (hr) (h) (::)",
         "patterns": [
             {
@@ -106,9 +36,9 @@
         "name": "Oração tom simples A",
         "type": "oracao",
         "tom": "simples",
-        "optional_end": "<sp>R/</sp> A(h) mém.(h) (::)",
-        "optional_start": "(c3) <sp>V/</sp> O(h) re(h) mos:(f) (::)",
-        "start": "(c3) <sp>V/</sp> ",
+        "optional_end": "<c><sp>R/</sp>.</c> A(h) mém.(h) (::)",
+        "optional_start": "(c3) <c><sp>V/</sp>.</c> O(h) re(h) mos:(f) (::)",
+        "start": "(c3) <c><sp>V/</sp>.</c> ",
         "default": "(h) (hr hr hr) (hr1) (dr) (d) (:)",
         "patterns": [
             {
@@ -143,9 +73,9 @@
         "name": "Oração tom simples B",
         "type": "oracao",
         "tom": "simples",
-        "optional_end": "<sp>R/</sp> A(h) mém.(h) (::)",
-        "optional_start": "(c3) <sp>V/</sp> O(h) re(h) mos:(h) (::)",
-        "start": "(c3) <sp>V/</sp> ",
+        "optional_end": "<c><sp>R/</sp>.</c> A(h) mém.(h) (::)",
+        "optional_start": "(c3) <c><sp>V/</sp>.</c> O(h) re(h) mos:(h) (::)",
+        "start": "(c3) <c><sp>V/</sp>.</c> ",
         "default": "(h) (hr hr hr) (hr1) (hr) (h) (:)",
         "patterns": [
             {
@@ -175,6 +105,52 @@
             "que(h) vi(h)ve(g) e(f) rei(h)na(h) pe(h)los(h) sé(h)cu(h)los(g) dos(h) sé(h)cu(h)los.(h) (::)",
             ""
         ]
+    },
+     {
+        "name": "Prefácio tom solene",
+        "type": "prefacio",
+        "tom": "solene",
+        "optional_end": "",
+        "optional_start": "(c3) <c><sp>V/</sp>.</c> O(e) Se(f)nhor(g) es(g)te(g)ja(e) con(f)vos(gf)co.(f) (::) <c><sp>R/</sp>.</c> E(e)l{e‿e}s(f)tá(g) no(g) mei(g)o(e) de(f) nós(gf) (::Z) <c><sp>V/</sp>.</c> Co(f)ra(g)ções(h) ao(g) al(fg)to.(fe) (::) <c><sp>R/</sp>.</c> O(g) nos(g)so(g) co(f)ra(g)ção(h) es(g)tá(f) em(g) Deus.(fe) (::Z) <c><sp>V/</sp>.</c> De(gf)mos(e) gra(ef)ças(g) ao(f) Se(g)nhor(hg) nos(fe)so(fg) Deus.(fgf) (::) <c><sp>R/</sp>.</c> É(f) nos(f)so(f) de(g)ver(h) e(g) nos(g)sa(f) sal(g)va(f)ção.(fe) (::Z) ",
+        "start": "(c3) <c><sp>V/</sp>.</c> ",
+        "default": "(g) (gr gr gr) (fe) (ef) (g) (fgr1) (fr) (f) (:)",
+        "patterns": [
+            {
+                "symbol": "*",
+                "gabc": "(f) (hr hr hr) (gf) (fgr1) (gr) (g) (;)"
+            },
+            {
+                "symbol": "+",
+                "gabc": "(f) (gr gr gr) (hr1) (gr) (g) (,)"
+            }
+        ],
+        "find": [
+            "Por isso,"
+        ],
+        "replace": [
+            "Por(f) is(ef)so,(f) (,) "
+        ]
+    },
+    {
+        "name": "Prefácio tom simples",
+        "type": "prefacio",
+        "tom": "simples",
+        "optional_end": "",
+        "optional_start": "(c3) <c><sp>V/</sp>.</c> O(f) Se(g)nhor(h) es(h)te(h)ja(f) con(g)vos(h)co.(g) (::) <c><sp>R/</sp>.</c> E(f)l{e‿e}s(g)tá(h) no(h) mei(h)o(f) de(g) nós(hg) (::Z) <c><sp>V/</sp>.</c> Co(g)ra(h)ções(i) ao(h) al(g)to.(g) (::) <c><sp>R/</sp>.</c> O(h) nos(h)so(h) co(g)ra(h)ção(i) es(h)tá(g) em(h) Deus.(gf) (::Z) <c><sp>V/</sp>.</c> De(ih)mos(g) gra(h)ças(h) ao(h) Se(h)nhor(h) nos(f)so(g) Deus.(hg) (::) <c><sp>R/</sp>.</c> É(g) nos( g)so(g) de(h)ver(i) e(h) nos(h)sa(g) sal(h)va(g)ção.(gf) (::Z)",
+        "start": "(c3) <c><sp>V/</sp>.</c> ",
+        "default": "(g) (gr gr gr) (e) (f) (gr1) (fr) (f) (:)",
+        "patterns": [
+            {
+                "symbol": "*",
+                "gabc": "(f) (hr hr hr) (g) (f) (gr1) (gr) (g) (;)"
+            },
+            {
+                "symbol": "+",
+                "gabc": "(g) (gr gr gr) (hr1) (gr) (g) (,)"
+            }
+        ],
+        "find": [],
+        "replace": []
     },
     {
         "name": "Evangelho tom A (teste)",
@@ -223,6 +199,30 @@
                 "gabc": "(h) (hr hr hr) (hr1) (gr) (g)"
             }
         ],
+        "find": [],
+        "replace": []
+    },
+    {
+        "name": "Corda de récita",
+        "type": "custom",
+        "tom": "simples",
+        "optional_end": "",
+        "optional_start": "(c4) <c><sp>V/</sp>.</c>",
+        "start": "(c4) <c><sp>V/</sp>.</c>",
+        "default": "(h) (hr hr hr) (::)",
+        "patterns": [],
+        "find": [],
+        "replace": []
+    },
+    {
+        "name": "Personalizado",
+        "type": "custom",
+        "tom": "solene",
+        "optional_end": "",
+        "optional_start": "(c4) <c><sp>V/</sp>.</c>",
+        "start": "(c4) <c><sp>V/</sp>.</c>",
+        "default": "(h) (hr hr hr) (::)",
+        "patterns": [],
         "find": [],
         "replace": []
     }

@@ -1,4 +1,3 @@
-import models from "./frontend/public/models.json";
 import syllable from "./separador-silabas/syllable";
 import tonic from "./separador-silabas/tonic";
 
@@ -137,9 +136,29 @@ export interface Parameters {
     removeParenthesis?: boolean;
     separator: string;
     removeSeparator?: boolean;
+    customNote?: string;
+    customClef?: string;
+    customPattern?: string;
+    customStart?: string;
 }
 
 export default function generateGabc(input: string, modelObject: Model, parametersObject: Parameters): string {
+    let model = { ...modelObject };
+
+    if (model.type === 'custom') {
+        if (model.tom === 'simples') {
+            const note = parametersObject.customNote || 'h';
+            const clef = parametersObject.customClef || 'c4';
+            model.start, model.optional_start = "(" + clef + ") ";
+            model.default = "(" + note + ") (" + note + "r " + note + "r " + note + "r" + ")";
+            console.log(model)
+        } else if (model.tom === 'solene') {
+            model.default = parametersObject.customPattern || '';
+            model.start = parametersObject.customStart || '';
+            model.optional_start = parametersObject.customStart || '';
+        }
+    }
+
     if (parametersObject.removeNumbers) {
         input = input.replace(/[0-9]/g, "");
     }
@@ -150,38 +169,38 @@ export default function generateGabc(input: string, modelObject: Model, paramete
     let gabcLines: string[] = [];
 
     for (const chunk of chunks) {
-        const findIndex = modelObject.find.indexOf(chunk);
+        const findIndex = model.find.indexOf(chunk);
         if (findIndex !== -1) {
-            const replacement = modelObject.replace[findIndex];
+            const replacement = model.replace[findIndex];
             if (replacement !== undefined) {
                 gabcLines.push(replacement);
             } else {
-                gabcLines.push(applyModel(chunk, modelObject.default));
+                gabcLines.push(applyModel(chunk, model.default));
             }
             continue;
         }
         
         const lastChar = chunk.slice(-1);
-        const pattern = modelObject.patterns.find(p => p.symbol === lastChar);
+        const pattern = model.patterns.find(p => p.symbol === lastChar);
         if (pattern) {
             const text = chunk.slice(0, -1);
             gabcLines.push(applyModel(text, pattern.gabc));
         } else {
-            gabcLines.push(applyModel(chunk, modelObject.default));
+            gabcLines.push(applyModel(chunk, model.default));
         }
     }
 
     let resultGabc = "";
     if (parametersObject.addOptionalStart) {
-        resultGabc = [modelObject.optional_start, ...gabcLines].join("\n");
+        resultGabc = [model.optional_start, ...gabcLines].join("\n");
         if (parametersObject.addOptionalEnd) {
-            resultGabc += "\n" + modelObject.optional_end;
+            resultGabc += "\n" + model.optional_end;
         }
     } else {
         if (gabcLines.length > 0) {
-            gabcLines[0] = modelObject.start + gabcLines[0];
+            gabcLines[0] = model.start + gabcLines[0];
         }
-        resultGabc = gabcLines.join("\n") + modelObject.end;
+        resultGabc = gabcLines.join("\n") + model.end;
     }
 
     if (parametersObject.exsurge) {

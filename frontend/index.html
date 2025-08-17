@@ -50,6 +50,28 @@
                 <label for="removeSeparator">Remover separador</label>
               </div>
             </div>
+            <div id="custom-options" style="display: none;">
+              <div id="custom-simples-options" style="display: none;">
+                <label for="custom-note">Nota:</label>
+                <input type="text" id="custom-note" value="g" />
+                <label for="custom-clef">Clave:</label>
+                <select id="custom-clef">
+                  <option value="c1">c1</option>
+                  <option value="c2">c2</option>
+                  <option value="c3">c3</option>
+                  <option value="c4">c4</option>
+                  <option value="f3">f3</option>
+                  <option value="f4">f4</option>
+                  <option value="cb3">cb3</option>
+                </select>
+              </div>
+              <div id="custom-solene-options" style="display: none;">
+                <label for="custom-pattern">Padrão:</label>
+                <textarea id="custom-pattern" rows="5">(g) (gr gr gr) (fe) (ef) (g) (fgr1) (fr) (f) (:)</textarea>
+                <label for="custom-start">Começo:</label>
+                <input type="text" id="custom-start" value="(c3) <sp>V/</sp> "/>
+              </div>
+            </div>
           </details>
           <label for="input">Texto</label>
           <textarea id="input" rows="10" spellcheck="false"></textarea>
