@@ -59,7 +59,6 @@ function handleModelChange() {
 function initializeAndLayoutChant(gabc: string) {
   const ctxt = new exsurge.ChantContext();
   ctxt.lyricTextFont = "'Crimson Text', serif";
-  ctxt.lyricTextSize *= 1.2;
   ctxt.dropCapTextFont = ctxt.lyricTextFont;
   ctxt.annotationTextFont = ctxt.lyricTextFont;
 
