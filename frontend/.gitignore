@@ -22,9 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-bun.lock
-package.json
-input.txt
-result.gabc
-tsconfig.json

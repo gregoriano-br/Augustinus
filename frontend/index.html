@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Augustinus</title>
+    <link rel="stylesheet" href="/src/style.css" />
+    <script src="/exsurge.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Augustinus</h1>
+      </header>
+      <main>
+        <div class="controls">
+          <details>
+            <summary>Opções</summary>
+            <div class="options-grid">
+              <div class="option">
+                <label for="model">Modelo:</label>
+                <select id="model"></select>
+              </div>
+              <div class="option">
+                <label for="separator">Separador:</label>
+                <input type="text" id="separator" value="." />
+              </div>
+              <div class="option">
+                <input type="checkbox" id="addOptionalStart" checked/>
+                <label for="addOptionalStart">Adicionar começo</label>
+              </div>
+              <div class="option">
+                <input type="checkbox" id="addOptionalEnd" checked/>
+                <label for="addOptionalEnd">Adicionar final</label>
+              </div>
+              <div class="option">
+                <input type="checkbox" id="exsurge" checked />
+                <label for="exsurge">Exsurge</label>
+              </div>
+              <div class="option">
+                <input type="checkbox" id="removeNumbers" checked />
+                <label for="removeNumbers">Remover números</label>
+              </div>
+              <div class="option">
+                <input type="checkbox" id="removeParenthesis" checked />
+                <label for="removeParenthesis">Remover parênteses</label>
+              </div>
+              <div class="option">
+                <input type="checkbox" id="removeSeparator" />
+                <label for="removeSeparator">Remover separador</label>
+              </div>
+            </div>
+            <div id="custom-options" style="display: none;">
+              <div id="custom-simples-options" style="display: none;">
+                <label for="custom-note">Nota:</label>
+                <input type="text" id="custom-note" value="g" />
+                <label for="custom-clef">Clave:</label>
+                <select id="custom-clef">
+                  <option value="c1">c1</option>
+                  <option value="c2">c2</option>
+                  <option value="c3">c3</option>
+                  <option value="c4">c4</option>
+                  <option value="f3">f3</option>
+                  <option value="f4">f4</option>
+                  <option value="cb3">cb3</option>
+                </select>
+              </div>
+              <div id="custom-solene-options" style="display: none;">
+                <label for="custom-pattern">Padrão:</label>
+                <textarea id="custom-pattern" rows="5">(g) (gr gr gr) (fe) (ef) (g) (fgr1) (fr) (f) (:)</textarea>
+                <label for="custom-start">Começo:</label>
+                <input type="text" id="custom-start" value="(c3) <sp>V/</sp> "/>
+              </div>
+            </div>
+          </details>
+          <label for="input">Texto</label>
+          <textarea id="input" rows="10" spellcheck="false"></textarea>
+          <button id="generate">Gerar</button>
+          <label for="gabc">GABC</label>
+          <textarea id="gabc" rows="10" spellcheck="false"></textarea>
+          
+        </div>
+        <div class="output">
+          <div class="a4-container">
+            <div id="chant-container" class="chant-container"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
