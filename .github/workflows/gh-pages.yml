@@ -37,7 +37,7 @@ jobs:
         run: npm install
       - name: Build src module
         run: tsc
-        working-directory: ./src
+        working-directory: ./
       - name: Build frontend
         run: npm run build
         working-directory: ./frontend
