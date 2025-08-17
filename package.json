@@ -1,6 +1,6 @@
 {
   "name": "augustinus",
-  "version": "0.0.3",
+  "version": "3.0.0",
   "description": "Uma ferramenta para transformar texto em notação gregoriana GABC",
   "main": "dist/index.js",
   "bin": {
@@ -8,7 +8,7 @@
   },
   "type": "module",
   "scripts": {
-    "build": "bun run tsc",
+    "build": "esbuild cli.ts --bundle --platform=node --format=esm --outfile=dist/cli.js --external:yargs",
     "start": "bun run cli.ts"
   },
   "files": [
@@ -19,8 +19,9 @@
     "yargs": "^17.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
     "@types/node": "^20.0.0",
-    "@types/yargs": "^17.0.0"
+    "@types/yargs": "^17.0.0",
+    "esbuild": "^0.25.9",
+    "typescript": "^5.0.0"
   }
 }

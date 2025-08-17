@@ -1,11 +1,16 @@
-import generateGabc, { type Model, type Parameters } from "./augustinus";
-import models from "./assets/models.json";
+#!/usr/bin/env node
+import generateGabc, { type Model, type Parameters } from "./augustinus.js";
+
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import path from 'path';
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+
+const models: Model[] = JSON.parse(fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), 'assets', 'models.json'), 'utf-8'));
+
+
     const argv = yargs(hideBin(process.argv))
         .options({
             text: { type: 'string', alias: 't', description: 'Input text to convert to GABC' },
@@ -70,4 +75,3 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     } else {
         console.log(gabc);
     }
-}
