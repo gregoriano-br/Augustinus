@@ -1,5 +1,6 @@
 import syllable from "./separador-silabas/syllable";
 import tonic from "./separador-silabas/tonic";
+import defaultModels from './assets/models.json';
 
 function replaceFromEnd(input: string, find: string, replaceWith: string, limit?: number): string {
     let result: string = input;
@@ -120,7 +121,6 @@ export interface Model {
     tom: string;
     optional_end: string;
     optional_start: string;
-    end: string;
     start: string;
     default: string;
     patterns: Pattern[];
@@ -200,7 +200,7 @@ export default function generateGabc(input: string, modelObject: Model, paramete
         if (gabcLines.length > 0) {
             gabcLines[0] = model.start + gabcLines[0];
         }
-        resultGabc = gabcLines.join("\n") + model.end;
+        resultGabc = gabcLines.join("\n");
     }
 
     if (parametersObject.exsurge) {
@@ -209,3 +209,5 @@ export default function generateGabc(input: string, modelObject: Model, paramete
 
     return resultGabc;
 }
+
+export { defaultModels };

@@ -1,5 +1,5 @@
-import generateGabc, { type Model, type Parameters } from "./augustinus";
-import models from "./models.json";
+import generateGabc, { type Model, type Parameters } from "./src/augustinus";
+import models from "./src/assets/models.json";
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { fileURLToPath } from 'url';

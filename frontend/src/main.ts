@@ -1,9 +1,8 @@
-import generateGabc from '../../augustinus';
-import type { Model, Parameters } from '../../augustinus';
-
+import generateGabc, { defaultModels } from '../../src/augustinus';
+import type { Model, Parameters } from '../../src/augustinus';
 declare const exsurge: any;
 
-let models: Model[] = [];
+let models: Model[] = defaultModels;
 
 const modelSelect = document.getElementById('model') as HTMLSelectElement;
 const separatorInput = document.getElementById('separator') as HTMLInputElement;
@@ -25,22 +24,6 @@ const customNoteInput = document.getElementById('custom-note') as HTMLInputEleme
 const customClefSelect = document.getElementById('custom-clef') as HTMLSelectElement;
 const customPatternTextArea = document.getElementById('custom-pattern') as HTMLTextAreaElement;
 const customStartInput = document.getElementById('custom-start') as HTMLInputElement;
-
-async function loadModels() {
-  try {
-    const response = await fetch('/models.json');
-    models = await response.json();
-    models.forEach((model, index) => {
-      const option = document.createElement('option');
-      option.value = index.toString();
-      option.textContent = model.name;
-      modelSelect.appendChild(option);
-    });
-    handleModelChange();
-  } catch (error) {
-    console.error('Error loading models:', error);
-  }
-}
 
 function handleModelChange() {
   const selectedModelIndex = parseInt(modelSelect.value, 10);
@@ -126,4 +109,10 @@ gabcTextArea.addEventListener('input', () => {
   initializeAndLayoutChant(gabc);
 });
 
-loadModels();
+models.forEach((model, index) => {
+  const option = document.createElement('option');
+  option.value = index.toString();
+  option.textContent = model.name;
+  modelSelect.appendChild(option);
+});
+handleModelChange();
