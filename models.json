@@ -11,7 +11,7 @@
             "patterns": [
                 {
                     "symbol": "*",
-                    "gabc": "(f) (hr hr ir) (gf) (fgr1) (gr) (g) (;)"
+                    "gabc": "(f) (hr hr hr) (gf) (fgr1) (gr) (g) (;)"
                 },
                 {
                     "symbol": "+",
