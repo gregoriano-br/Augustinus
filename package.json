@@ -1,5 +1,26 @@
 {
+  "name": "augustinus-gabc",
+  "version": "0.0.1",
+  "description": "A tool to convert text to GABC notation.",
+  "main": "dist/index.js",
+  "bin": {
+    "augustinus": "dist/cli.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "bun run tsc -p src/",
+    "start": "bun run src/cli.ts"
+  },
+  "files": [
+    "dist/"
+  ],
   "dependencies": {
-    "separador-silabas": "^0.0.3"
+    "separador-silabas": "^2.0.0",
+    "yargs": "^17.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@types/yargs": "^17.0.0"
   }
 }

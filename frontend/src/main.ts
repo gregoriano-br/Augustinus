@@ -1,5 +1,5 @@
-import generateGabc, { defaultModels } from '../../src/augustinus';
-import type { Model, Parameters } from '../../src/augustinus';
+import generateGabc, { defaultModels } from '../../augustinus';
+import type { Model, Parameters } from '../../augustinus';
 declare const exsurge: any;
 
 let models: Model[] = defaultModels;
