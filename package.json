@@ -1,6 +1,6 @@
 {
-  "name": "augustinus-gabc",
-  "version": "0.0.2",
+  "name": "augustinus",
+  "version": "0.0.3",
   "description": "Uma ferramenta para transformar texto em notação gregoriana GABC",
   "main": "dist/index.js",
   "bin": {
