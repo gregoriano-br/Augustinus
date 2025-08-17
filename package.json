@@ -1,15 +1,15 @@
 {
   "name": "augustinus-gabc",
-  "version": "0.0.1",
-  "description": "A tool to convert text to GABC notation.",
+  "version": "0.0.2",
+  "description": "Uma ferramenta para transformar texto em notação gregoriana GABC",
   "main": "dist/index.js",
   "bin": {
     "augustinus": "dist/cli.js"
   },
   "type": "module",
   "scripts": {
-    "build": "bun run tsc -p src/",
-    "start": "bun run src/cli.ts"
+    "build": "bun run tsc",
+    "start": "bun run cli.ts"
   },
   "files": [
     "dist/"
