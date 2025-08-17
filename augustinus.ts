@@ -21,45 +21,47 @@ function replaceFromEnd(input: string, find: string, replaceWith: string, limit?
     return result;
 }
 function applyModel(lyrics: string, gabcModel: string): string {
-    // Step 1: Prepare the lyrics by splitting into words and appending a placeholder '@' for notes.
-    let wordsWithNotePlaceholders: string[] = lyrics.split(" ");
+    const taggedParts: string[] = [];
+    const placeholder = "||TAGGED_PART||";
+    
+    let deTaggedLyrics = lyrics.replace(/(<[^>]+>.*?<\/[^>]+>)/g, (match) => {
+        taggedParts.push(match);
+        return placeholder;
+    });
+
+    let wordsWithNotePlaceholders: string[] = deTaggedLyrics.split(/\s+/).filter(w => w).map(word => {
+        if (word === placeholder) {
+            return taggedParts.shift() || "";
+        }
+        return syllable(word) + "@";
+    });
+
     let gabcOutput: string = "";
-
-    for (let i = 0; i < wordsWithNotePlaceholders.length; i++) {
-        // Assuming 'syllable' is an external function that processes each word,
-        // likely converting it to a form suitable for GABC, then appending a note placeholder.
-        wordsWithNotePlaceholders[i] = syllable(wordsWithNotePlaceholders[i] || "") + "@";
-
-    }
-
-    // Step 2: Parse the GABC model string to extract different sections of notes.
-
-    // Split the GABC model string using the triplet pattern. This results in parts before the triplet,
-    // the matched triplet itself, and parts after the triplet.
     let modelSegments: string[] = gabcModel.split(/(\([a-n]r [a-n]r [a-n]r\))/gm);
-    // Filter out any empty strings that might result from the split operation,
-    // ensuring we only work with meaningful segments.
-
     const validModelSegments: string[] = modelSegments.filter(segment => segment && segment.trim() !== '');
-    // Assign the extracted model parts for clarity. Use fallback empty strings if a segment is missing.
     const prefixNotesRaw: string = (validModelSegments[0] || "").trim();
-    // These are the notes (e.g., "gabc(c) d(f) e(g)") that precede the triplet pattern.
     const prefixNotesArray: string[] = prefixNotesRaw.split(" ");
-    // Extract a single 'root' note from the matched triplet pattern.
-    // For a pattern like '(ar br cr)', this extracts 'a' and formats it as '(a)'.
     const extractedTripletRootNote: string = "(" + (validModelSegments[1] || "").trim().charAt(1) + ")";
-    // This is the part of the model string that comes after the triplet.
     const suffixString: string = (validModelSegments[2] || "").trim();
     let isDynamic: boolean = false;
     if (suffixString.includes("r1")) {
         isDynamic = true
     }
     const wordCount: number = wordsWithNotePlaceholders.length;
-    let word: string = wordsWithNotePlaceholders[wordCount - 1] || "";
+    
+    let lastWordForTonic = "";
+    for(let i = wordCount - 1; i >= 0; i--) {
+        const currentWord = wordsWithNotePlaceholders[i] || "";
+        if (!currentWord.includes('<')) {
+            lastWordForTonic = currentWord;
+            break;
+        }
+    }
+
     let notes: string[] = suffixString.split(" ") || [];
     gabcOutput += wordsWithNotePlaceholders.join(" ");
-    if (isDynamic) {
-        const tonicNumber: number = tonic(word.split("@"));
+    if (isDynamic && lastWordForTonic) {
+        const tonicNumber: number = tonic(lastWordForTonic.split("@"));
         let offset: number = 0;
         for (let i = 0; i < notes.length; i++) {
             if (notes[i]?.match("r1")) {
@@ -91,7 +93,6 @@ function applyModel(lyrics: string, gabcModel: string): string {
         for (let i = offset + 3; i < notes.length; i++) {
             gabcOutput += " " + notes[i];
         }
-
     }
 
     for (let i = 0; i < prefixNotesArray.length; i++) {
@@ -135,10 +136,17 @@ export interface Parameters {
     removeNumbers?: boolean;
     removeParenthesis?: boolean;
     separator: string;
+    removeSeparator?: boolean;
 }
-// todo: Add the new parameters to the generateGabc function
+
 export default function generateGabc(input: string, modelObject: Model, parametersObject: Parameters): string {
-    const chunks: string[] = input.split(parametersObject.separator).map(s => s.trim().replace(/\s*([\*\+])/g, '$1')).filter(Boolean);
+    if (parametersObject.removeNumbers) {
+        input = input.replace(/[0-9]/g, "");
+    }
+    if (parametersObject.removeParenthesis) {
+        input = input.replace(/\(.*\)/g, "");
+    }
+    const chunks: string[] = input.split(parametersObject.separator).map(s => s.trim().replace(/\s*([*+]})/g, '$1') + (parametersObject.removeSeparator === false ? parametersObject.separator : '')).filter(chunk => chunk && chunk !== parametersObject.separator);
     let gabcLines: string[] = [];
 
     for (const chunk of chunks) {
@@ -165,12 +173,19 @@ export default function generateGabc(input: string, modelObject: Model, paramete
 
     let resultGabc = "";
     if (parametersObject.addOptionalStart) {
-        resultGabc = [modelObject.optional_start, ...gabcLines, modelObject.optional_end].join("\n");
+        resultGabc = [modelObject.optional_start, ...gabcLines].join("\n");
+        if (parametersObject.addOptionalEnd) {
+            resultGabc += "\n" + modelObject.optional_end;
+        }
     } else {
         if (gabcLines.length > 0) {
             gabcLines[0] = modelObject.start + gabcLines[0];
         }
         resultGabc = gabcLines.join("\n") + modelObject.end;
+    }
+
+    if (parametersObject.exsurge) {
+        resultGabc = convertExsurge(resultGabc);
     }
 
     return resultGabc;

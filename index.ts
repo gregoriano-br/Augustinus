@@ -1,4 +1,4 @@
-import generateGabc, { type Model } from "./augustinus";
+import generateGabc, { type Model, type Parameters } from "./augustinus";
 import models from "./models.json";
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
@@ -12,7 +12,13 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
             inputFile: { type: 'string', alias: 'i', description: 'Input file path' },
             outputFile: { type: 'string', alias: 'o', description: 'Output file path' },
             model: { type: 'string', demandOption: true, alias: 'm', description: 'Name of the model to use' },
-            addOptionalStart: { type: 'boolean', default: false, alias: 'a', description: 'Add optional start and end' },
+            addOptionalStart: { type: 'boolean', default: false, alias: 'a', description: 'Add optional start' },
+            addOptionalEnd: { type: 'boolean', default: false, description: 'Add optional end' },
+            exsurge: { type: 'boolean', default: false, description: 'Apply exsurge conversion' },
+            removeNumbers: { type: 'boolean', default: false, description: 'Remove numbers from input' },
+            removeParenthesis: { type: 'boolean', default: true, description: 'Remove parenthesis and their content from input' },
+            separator: { type: 'string', default: '\n', description: 'Separator for chunks of text' },
+            removeSeparator: { type: 'boolean', default: true, description: 'If false, the separator character will be used to join GABC lines.' }
         })
         .check((argv: { text: any; inputFile: any; }) => {
             if (!argv.text && !argv.inputFile) {
@@ -41,7 +47,17 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
         }
     }
 
-    const gabc = generateGabc(inputText, modelObject, { addOptionalStart: argv.addOptionalStart });
+    const parameters: Parameters = {
+        addOptionalStart: argv.addOptionalStart,
+        addOptionalEnd: argv.addOptionalEnd,
+        exsurge: argv.exsurge,
+        removeNumbers: argv.removeNumbers,
+        removeParenthesis: argv.removeParenthesis,
+        separator: argv.separator,
+        removeSeparator: argv.removeSeparator
+    };
+
+    const gabc = generateGabc(inputText, modelObject, parameters);
 
     if (argv.outputFile) {
         try {
