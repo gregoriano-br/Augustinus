@@ -82,7 +82,7 @@ function generate() {
   }
 
   const parameters: Parameters = {
-    separator: separatorInput.value,
+    separator: separatorInput.value.replaceAll('\\n', '\n'),
     addOptionalStart: addOptionalStartCheckbox.checked,
     addOptionalEnd: addOptionalEndCheckbox.checked,
     exsurge: exsurgeCheckbox.checked,

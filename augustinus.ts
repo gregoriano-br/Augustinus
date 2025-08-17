@@ -150,7 +150,6 @@ export default function generateGabc(input: string, modelObject: Model, paramete
             const clef = parametersObject.customClef || 'c4';
             model.start, model.optional_start = "(" + clef + ") ";
             model.default = "(" + note + ") (" + note + "r " + note + "r " + note + "r" + ")";
-            console.log(model)
         } else if (model.tom === 'solene') {
             model.default = parametersObject.customPattern || '';
             model.start = parametersObject.customStart || '';
@@ -164,11 +163,22 @@ export default function generateGabc(input: string, modelObject: Model, paramete
     if (parametersObject.removeParenthesis) {
         input = input.replace(/\(.*\)/g, "");
     }
-    const chunks: string[] = input.split(parametersObject.separator).map(s => s.trim().replace(/\s*([*+]})/g, '$1') + (parametersObject.removeSeparator === false ? parametersObject.separator : '')).filter(chunk => chunk && chunk !== parametersObject.separator);
+    // exceção 'Por isso,'
+    let regex_endings: string = "([\\" + parametersObject.separator;
+    for (let i = 0; i < modelObject.patterns.length; i++) {
+        const symbol: string = modelObject.patterns[i].symbol;
+        input = input.replaceAll(symbol, symbol + parametersObject.separator);
+        regex_endings += "\\" + symbol;
+    }
+    regex_endings += "]+)\\" + parametersObject.separator;
+    if (modelObject.type === "prefacio" && modelObject.tom === "solene") {
+        input = input.replaceAll("Por isso,", "Por isso," + parametersObject.separator);
+    }
+    const chunks: string[] = input.split(parametersObject.separator).map(s => s.trim()).filter(chunk => chunk && chunk !== parametersObject.separator);
     let gabcLines: string[] = [];
 
     for (const chunk of chunks) {
-        const findIndex = model.find.indexOf(chunk);
+        const findIndex = (model.find + parametersObject.separator).indexOf(chunk);
         if (findIndex !== -1) {
             const replacement = model.replace[findIndex];
             if (replacement !== undefined) {
@@ -182,10 +192,10 @@ export default function generateGabc(input: string, modelObject: Model, paramete
         const lastChar = chunk.slice(-1);
         const pattern = model.patterns.find(p => p.symbol === lastChar);
         if (pattern) {
-            const text = chunk.slice(0, -1);
+            const text = chunk.slice(0, -1).trim();
             gabcLines.push(applyModel(text, pattern.gabc));
         } else {
-            gabcLines.push(applyModel(chunk, model.default));
+            gabcLines.push(applyModel(chunk.trim() + (parametersObject.removeSeparator === false ? parametersObject.separator : ''), model.default));
         }
     }
 
