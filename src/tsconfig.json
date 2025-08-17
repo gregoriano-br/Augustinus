@@ -9,7 +9,11 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "resolveJsonModule": true,
-    "moduleResolution": "Bundler"
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "paths": {
+      "./*": ["./*"]
+    }
   },
   "include": ["./**/*.ts"],
   "exclude": ["./separador-silabas/compare", "./dist"]
