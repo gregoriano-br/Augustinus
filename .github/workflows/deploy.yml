@@ -33,6 +33,8 @@ jobs:
       - name: Install dependencies for frontend
         run: npm install
         working-directory: ./frontend
+      - name: Install root dependencies
+        run: npm install
       - name: Build src module
         run: tsc
         working-directory: ./src
