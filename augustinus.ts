@@ -1,4 +1,4 @@
-import models from "./models.json";
+import models from "./frontend/public/models.json";
 import syllable from "./separador-silabas/syllable";
 import tonic from "./separador-silabas/tonic";
 

@@ -1,0 +1,118 @@
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #fdfdfd;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  background: #fff;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.controls {
+  width: 650px;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: #fff;
+  border-right: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+.output {
+  flex: 1;
+  padding: 2rem;
+  overflow: auto;
+  background-color: #f0f0f0;
+}
+
+textarea {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 1em;
+  font-family: 'EB Garamond';
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+button:hover {
+  background: #555;
+}
+
+details {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.75rem;
+  background: #333;
+  color: white;
+  border-bottom: 1px solid #ccc;
+}
+
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+}
+
+.option label {
+  margin-left: 0.5rem;
+}
+
+.a4-container {
+  background: white;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 2cm;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#chant-container {
+  width: 100%;
+}
