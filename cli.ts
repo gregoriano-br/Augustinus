@@ -3,12 +3,9 @@ import generateGabc, { type Model, type Parameters } from "./augustinus.js";
 
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { fileURLToPath } from 'url';
 import fs from 'fs';
 import path from 'path';
-
-
-const models: Model[] = JSON.parse(fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), 'assets', 'models.json'), 'utf-8'));
+import models from './assets/models.json' with { type: 'json' };
 
 
     const argv = yargs(hideBin(process.argv))

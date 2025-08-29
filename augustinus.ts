@@ -215,7 +215,7 @@ export default function generateGabc(input: string, modelObject: Model, paramete
     if (parametersObject.exsurge) {
         resultGabc = convertExsurge(resultGabc);
     }
-
+    resultGabc = resultGabc.replaceAll(/'\(.\)/gm, "(,)");
     return resultGabc;
 }
 
