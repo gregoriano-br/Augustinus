@@ -153,6 +153,33 @@
         "replace": []
     },
     {
+        "name": "Bênção tom solene (teste)",
+        "type": "bencao",
+        "tom": "solene",
+        "optional_end": "",
+        "optional_start": "(c4) <c><sp>V/</sp>.</c> ",
+        "start": "(c4) <c><sp>V/</sp>.</c> ",
+        "default": "(h) (hr hr hr) (g) (h) (hr1g) (gr) (g) (::)",
+        "patterns": [
+            {
+                "symbol": "+",
+                "gabc": "(g) (hr hr hr) (hr1) (gr) (g) (,)"
+            },
+            {
+                "symbol": "*",
+                "gabc": "(g) (hr hr hr) (ir1) (hr) (h) (;)"
+            }
+        ],
+        "find": [
+            "Amém.",
+            "E a bênção de Deus todo-poderoso, Pai e Filho e Espírito Santo, desça sobre vós e permaneça para sempre."
+        ],
+        "replace": [
+            "<c><sp>R/</sp>.</c> A(g) mém.(gh) (::Z)",
+            "E(g) a(h) bên(h)ção(h) de(h) Deus(h) to(h)do-(h)po(h)de(h)ro(h)so,(g) (;) Pai(gh) e(h) Filh(h)o(h) e(h) Es(h)pí(h)ri(h)to(h) San(i)to,(h) (,) des(h)ça(h) so(h)bre(h) vós(h) e(h) per(h)ma(h)ne(h)ça(h) pa(g)ra(h) sem(hg)pre.(g) (::)"
+        ]
+    },
+    {
         "name": "Evangelho tom A (teste)",
         "type": "evangelho",
         "tom": "",
