@@ -15,7 +15,7 @@
         ],
         "find": [
             "Por nosso Senhor Jesus Cristo, vosso Filho, que é Deus, e convosco vive e reina, na unidade do Espírito Santo, por todos os séculos dos séculos.",
-            "Por Cristo nosso Senhor.",
+            "Por Cristo, nosso Senhor.",
             "Vós que sois Deus, e vós que viveis e reinais com o Pai, na unidade do Espírito Santo, por todos os séculos dos séculos.",
             "Ele que é Deus, e conosco vive e reina na unidade do Espírito Santo, por todos os séculos dos séculos.",
             "Ele que vive e reina pelos séculos dos séculos.",
@@ -103,7 +103,7 @@
             "E(h)le(h) que(h) é(h) Deus,(h) e(h) con(h)vos(h)co(h) vi(h)ve(h) e(h) rei(h)na,(f) (;) na(h) u(h)ni(h)da(h)de(h) do(h) Es(h)pí(h)ri(g)to(f) San(h)to,(h) (;) por(h) to(h)dos(h) os(h) sé(h)cu(h)los(h) dos(h) sé(h)cu(h)los.(h) (::)",
             "E(h)le(h) que(h) vi(h)ve(g) e(f) rei(h)na(h) pe(h)los(h) sé(h)cu(h)los(g) dos(h) sé(h)cu(h)los.(h) (::)",
             "que(h) vi(h)ve(g) e(f) rei(h)na(h) pe(h)los(h) sé(h)cu(h)los(g) dos(h) sé(h)cu(h)los.(h) (::)",
-            ""
+            "ERRO"
         ]
     },
      {
@@ -153,7 +153,7 @@
         "replace": []
     },
     {
-        "name": "Bênção tom solene (teste)",
+        "name": "Bênção tom solene",
         "type": "bencao",
         "tom": "solene",
         "optional_end": "",
@@ -180,7 +180,7 @@
         ]
     },
     {
-        "name": "Evangelho tom A (teste)",
+        "name": "Evangelho tom A",
         "type": "evangelho",
         "tom": "",
         "optional_end": "Pa(h)la(h)vra(h) da(h) Sal(f)va(h)ção.(h) (::Z)Gló(h)ri(h){a‿a}(h) vós,(f) Se(h)nhor.(h) (::Z)",
@@ -190,7 +190,7 @@
         "patterns": [
             {
                 "symbol": "*",
-                "gabc": "(h) (hr hr hr) (fgwhr1) (hr) (h) (hr1) (hr) (h) (::)"
+                "gabc": "(h) (hr hr hr) (fgwhr1) (hr) (h)"
             },
             {
                 "symbol": "?",
@@ -198,11 +198,26 @@
             },
             {
                 "symbol": ":",
-                "gabc": "(h) (hr hr hr) (h) (:)"
+                "gabc": "(h) (hr hr hr) (h) (;)"
+            },
+            {
+                "symbol": ",",
+                "gabc": "(h) (hr hr hr) (h) (,)"
             }
+            
         ],
-        "find": [],
-        "replace": []
+        "find": [
+            "Proclamação do Evangelho de Jesus Cristo segundo Mateus.",
+            "Proclamação do Evangelho de Jesus Cristo segundo Marcos.",
+            "Proclamação do Evangelho de Jesus Cristo segundo Lucas.",
+            "Proclamação do Evangelho de Jesus Cristo segundo João."
+    ],
+        "replace": [
+            "Pro(h)cla(h)ma(h)ção(h) do(h) E(h)van(h)gelh(h)o(h) de(h) Je(h)sus(h) Cris(h)to(h) (,) se(h)gun(h)do(f) Ma(h)teus(h) (:)",
+            "Pro(h)cla(h)ma(h)ção(h) do(h) E(h)van(h)gelh(h)o(h) de(h) Je(h)sus(h) Cris(h)to(h) (,) se(h)gun(f)do(h) Mar(h)cos(h) (:)",
+            "Pro(h)cla(h)ma(h)ção(h) do(h) E(h)van(h)gelh(h)o(h) de(h) Je(h)sus(h) Cris(h)to(h) (,) se(h)gun(f)do(h) Lu(h)cas(h) (:)",
+            "Pro(h)cla(h)ma(h)ção(h) do(h) E(h)van(h)gelh(h)o(h) de(h) Je(h)sus(h) Cris(h)to(h) (,) se(h)gun(h)do(f) Jo(h)ão(h) (:)"
+        ]
     },
     {
         "name": "Salmo tom VI (teste)",

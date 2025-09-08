@@ -93,6 +93,12 @@ function applyModel(lyrics: string, gabcModel: string): string {
             gabcOutput += " " + notes[i];
         }
     }
+    else{
+        for (let i = notes.length - 2; i >= 0; i--) {
+            gabcOutput = replaceFromEnd(gabcOutput, "@", notes[i] || "", 1);
+        }
+        gabcOutput += " " + notes[notes.length - 1];
+    }
 
     for (let i = 0; i < prefixNotesArray.length; i++) {
         gabcOutput = gabcOutput.replace('@', prefixNotesArray[i]!);
@@ -178,7 +184,7 @@ export default function generateGabc(input: string, modelObject: Model, paramete
     let gabcLines: string[] = [];
 
     for (const chunk of chunks) {
-        const findIndex = (model.find + parametersObject.separator).indexOf(chunk);
+        let findIndex = model.find.indexOf(chunk + parametersObject.separator)
         if (findIndex !== -1) {
             const replacement = model.replace[findIndex];
             if (replacement !== undefined) {
@@ -192,7 +198,7 @@ export default function generateGabc(input: string, modelObject: Model, paramete
         const lastChar = chunk.slice(-1);
         const pattern = model.patterns.find(p => p.symbol === lastChar);
         if (pattern) {
-            const text = chunk.slice(0, -1).trim();
+            const text = model.type === 'evangelho' ? chunk.trim() : chunk.slice(0, -1).trim();
             gabcLines.push(applyModel(text, pattern.gabc));
         } else {
             gabcLines.push(applyModel(chunk.trim() + (parametersObject.removeSeparator === false ? parametersObject.separator : ''), model.default));
