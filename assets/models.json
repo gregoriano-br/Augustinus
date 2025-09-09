@@ -66,7 +66,7 @@
             "E(h)le(h) que(h) é(h) Deus,(h) e(h) con(h)vos(h)co(h) vi(h)ve(h) e(h) rei(h)na,(f) (;) na(h) u(h)ni(h)da(h)de(h) do(h) Es(h)pí(h)ri(g)to(f) San(h)to,(h) (;) por(h) to(h)dos(h) os(h) sé(h)cu(h)los(h) dos(h) sé(h)cu(f)los.(f) (::)",
             "E(h)le(h) que(h) vi(h)ve(g) e(f) rei(h)na(h) pe(h)los(h) sé(h)cu(h)los(h) dos(h) sé(h)cu(f)los.(f) (::)",
             "que(h) vi(h)ve(g) e(f) rei(h)na(h) pe(h)los(h) sé(h)cu(h)los(h) dos(h) sé(h)cu(f)los.(f) (::)",
-            ""
+            "ERRO"
         ]
     },
     {
@@ -111,7 +111,7 @@
         "type": "prefacio",
         "tom": "solene",
         "optional_end": "",
-        "optional_start": "(c3) <c><sp>V/</sp>.</c> O(e) Se(f)nhor(g) es(g)te(g)ja(e) con(f)vos(gf)co.(f) (::) <c><sp>R/</sp>.</c> E(e)l{e‿e}s(f)tá(g) no(g) mei(g)o(e) de(f) nós(gf) (::Z) <c><sp>V/</sp>.</c> Co(f)ra(g)ções(h) ao(g) al(fg)to.(fe) (::) <c><sp>R/</sp>.</c> O(g) nos(g)so(g) co(f)ra(g)ção(h) es(g)tá(f) em(g) Deus.(fe) (::Z) <c><sp>V/</sp>.</c> De(gf)mos(e) gra(ef)ças(g) ao(f) Se(g)nhor(hg) nos(fe)so(fg) Deus.(fgf) (::) <c><sp>R/</sp>.</c> É(f) nos(f)so(f) de(g)ver(h) e(g) nos(g)sa(f) sal(g)va(f)ção.(fe) (::Z) ",
+        "optional_start": "(c3) <c><sp>V/</sp>.</c> O(e) Se(f)nhor(g) es(g)te(g)ja(e) con(f)vos(gf)co.(f) (::) <c><sp>R/</sp>.</c> E(e)l{<v>\\itie{e e}</v>}s(f)tá(g) no(g) mei(g)o(e) de(f) nós(gf) (::Z) <c><sp>V/</sp>.</c> Co(f)ra(g)ções(h) ao(g) al(fg)to.(fe) (::) <c><sp>R/</sp>.</c> O(g) nos(g)so(g) co(f)ra(g)ção(h) es(g)tá(f) em(g) Deus.(fe) (::Z) <c><sp>V/</sp>.</c> De(gf)mos(e) gra(ef)ças(g) ao(f) Se(g)nhor(hg) nos(fe)so(fg) Deus.(fgf) (::) <c><sp>R/</sp>.</c> É(f) nos(f)so(f) de(g)ver(h) e(g) nos(g)sa(f) sal(g)va(f)ção.(fe) (::Z) ",
         "start": "(c3) <c><sp>V/</sp>.</c> ",
         "default": "(g) (gr gr gr) (fe) (ef) (g) (fgr1) (fr) (f) (:)",
         "patterns": [
@@ -136,7 +136,7 @@
         "type": "prefacio",
         "tom": "simples",
         "optional_end": "",
-        "optional_start": "(c3) <c><sp>V/</sp>.</c> O(f) Se(g)nhor(h) es(h)te(h)ja(f) con(g)vos(h)co.(g) (::) <c><sp>R/</sp>.</c> E(f)l{e‿e}s(g)tá(h) no(h) mei(h)o(f) de(g) nós(hg) (::Z) <c><sp>V/</sp>.</c> Co(g)ra(h)ções(i) ao(h) al(g)to.(g) (::) <c><sp>R/</sp>.</c> O(h) nos(h)so(h) co(g)ra(h)ção(i) es(h)tá(g) em(h) Deus.(gf) (::Z) <c><sp>V/</sp>.</c> De(ih)mos(g) gra(h)ças(h) ao(h) Se(h)nhor(h) nos(f)so(g) Deus.(hg) (::) <c><sp>R/</sp>.</c> É(g) nos( g)so(g) de(h)ver(i) e(h) nos(h)sa(g) sal(h)va(g)ção.(gf) (::Z)",
+        "optional_start": "(c3) <c><sp>V/</sp>.</c> O(f) Se(g)nhor(h) es(h)te(h)ja(f) con(g)vos(h)co.(g) (::) <c><sp>R/</sp>.</c> E(f)l{<v>\\itie{e e}</v>}s(g)tá(h) no(h) mei(h)o(f) de(g) nós(hg) (::Z) <c><sp>V/</sp>.</c> Co(g)ra(h)ções(i) ao(h) al(g)to.(g) (::) <c><sp>R/</sp>.</c> O(h) nos(h)so(h) co(g)ra(h)ção(i) es(h)tá(g) em(h) Deus.(gf) (::Z) <c><sp>V/</sp>.</c> De(ih)mos(g) gra(h)ças(h) ao(h) Se(h)nhor(h) nos(f)so(g) Deus.(hg) (::) <c><sp>R/</sp>.</c> É(g) nos( g)so(g) de(h)ver(i) e(h) nos(h)sa(g) sal(h)va(g)ção.(gf) (::Z)",
         "start": "(c3) <c><sp>V/</sp>.</c> ",
         "default": "(g) (gr gr gr) (e) (f) (gr1) (fr) (f) (:)",
         "patterns": [
@@ -183,8 +183,8 @@
         "name": "Evangelho tom A",
         "type": "evangelho",
         "tom": "",
-        "optional_end": "Pa(h)la(h)vra(h) da(h) Sal(f)va(h)ção.(h) (::Z)Gló(h)ri(h){a‿a}(h) vós,(f) Se(h)nhor.(h) (::Z)",
-        "optional_start": "O(h) Se(h)nhor(h) es(h)te(h)ja(h) con(h)vos(h)co.(h) (::Z)E(h)le(h) es(h)tá(h) no(h) meio(h) de(h) nós.(h) (::Z)",
+        "optional_end": "<c><sp>V/</sp>.</c>Pa(h)la(h)vra(h) da(h) Sal(f)va(h)ção.(h) (::) <c><sp>R/</sp>.</c> Gló(h)ri(h){<v>\\itie{a a}</v>}(h) vós,(f) Se(h)nhor.(h) (::Z)",
+        "optional_start": "<c><sp>V/</sp>.</c> O(h) Se(h)nhor(h) es(h)te(h)ja(h) con(h)vos(h)co.(h) (::) <c><sp>R/</sp>.</c> E(h)le(h) es(h)tá(h) no(h) meio(h) de(h) nós.(h) (::Z)",
         "start": "(c4) ",
         "default": "(h) (hr hr hr) (f) (h) (h) (h) (:)",
         "patterns": [
@@ -213,10 +213,10 @@
             "Proclamação do Evangelho de Jesus Cristo segundo João."
     ],
         "replace": [
-            "Pro(h)cla(h)ma(h)ção(h) do(h) E(h)van(h)gelh(h)o(h) de(h) Je(h)sus(h) Cris(h)to(h) (,) se(h)gun(h)do(f) Ma(h)teus(h) (:)",
-            "Pro(h)cla(h)ma(h)ção(h) do(h) E(h)van(h)gelh(h)o(h) de(h) Je(h)sus(h) Cris(h)to(h) (,) se(h)gun(f)do(h) Mar(h)cos(h) (:)",
-            "Pro(h)cla(h)ma(h)ção(h) do(h) E(h)van(h)gelh(h)o(h) de(h) Je(h)sus(h) Cris(h)to(h) (,) se(h)gun(f)do(h) Lu(h)cas(h) (:)",
-            "Pro(h)cla(h)ma(h)ção(h) do(h) E(h)van(h)gelh(h)o(h) de(h) Je(h)sus(h) Cris(h)to(h) (,) se(h)gun(h)do(f) Jo(h)ão(h) (:)"
+            "Pro(h)cla(h)ma(h)ção(h) do(h) E(h)van(h)gelh(h)o(h) de(h) Je(h)sus(h) Cris(h)to(h) (,) se(h)gun(h)do(f) Ma(h)teus(h) (:) <c><sp>R/</sp>.</c> Gló(h)ri(h){<v>\\itie{a a}</v>}(h) vós,(f) Se(h)nhor.(h) (:Z)",
+            "Pro(h)cla(h)ma(h)ção(h) do(h) E(h)van(h)gelh(h)o(h) de(h) Je(h)sus(h) Cris(h)to(h) (,) se(h)gun(f)do(h) Mar(h)cos(h) (:) <c><sp>R/</sp>.</c> Gló(h)ri(h){<v>\\itie{a a}</v>}(h) vós,(f) Se(h)nhor.(h) (:Z)",
+            "Pro(h)cla(h)ma(h)ção(h) do(h) E(h)van(h)gelh(h)o(h) de(h) Je(h)sus(h) Cris(h)to(h) (,) se(h)gun(f)do(h) Lu(h)cas(h) (:)  <c><sp>R/</sp>.</c> Gló(h)ri(h){<v>\\itie{a a}</v>}(h) vós,(f) Se(h)nhor.(h) (:Z)",
+            "Pro(h)cla(h)ma(h)ção(h) do(h) E(h)van(h)gelh(h)o(h) de(h) Je(h)sus(h) Cris(h)to(h) (,) se(h)gun(h)do(f) Jo(h)ão(h) (:)   <c><sp>R/</sp>.</c> Gló(h)ri(h){<v>\\itie{a a}</v>}(h) vós,(f) Se(h)nhor.(h) (:Z)"
         ]
     },
     {
