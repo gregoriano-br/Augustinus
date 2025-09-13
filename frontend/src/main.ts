@@ -2,7 +2,7 @@ import { GregorianChantSVGRenderer, GregorioScore, ChantContext } from '@testneu
 import generateGabc, { defaultModels } from '../../augustinus';
 import type { Model, Parameters } from '../../augustinus';
 let models: Model[] = defaultModels;
-let renderer: GregorianChantSVGRenderer | null = null;
+let renderer: any | null = null;
 
 const modelSelect = document.getElementById('model') as HTMLSelectElement;
 const separatorInput = document.getElementById('separator') as HTMLInputElement;
