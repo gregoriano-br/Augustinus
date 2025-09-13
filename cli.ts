@@ -16,7 +16,6 @@ import models from './assets/models.json' with { type: 'json' };
             model: { type: 'string', demandOption: true, alias: 'm', description: 'Name of the model to use' },
             addOptionalStart: { type: 'boolean', default: false, alias: 'a', description: 'Add optional start' },
             addOptionalEnd: { type: 'boolean', default: false, description: 'Add optional end' },
-            exsurge: { type: 'boolean', default: false, description: 'Apply exsurge conversion' },
             removeNumbers: { type: 'boolean', default: false, description: 'Remove numbers from input' },
             removeParenthesis: { type: 'boolean', default: true, description: 'Remove parenthesis and their content from input' },
             separator: { type: 'string', default: '\n', description: 'Separator for chunks of text' },
@@ -52,7 +51,6 @@ import models from './assets/models.json' with { type: 'json' };
     const parameters: Parameters = {
         addOptionalStart: argv.addOptionalStart,
         addOptionalEnd: argv.addOptionalEnd,
-        exsurge: argv.exsurge,
         removeNumbers: argv.removeNumbers,
         removeParenthesis: argv.removeParenthesis,
         separator: argv.separator,

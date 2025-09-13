@@ -1,9 +1,21 @@
+/* New Color Palette:
+- Background: #2F2A20 (Dark Brown)
+- Primary/Controls: #4A443A (Slightly lighter brown)
+- Accent: #9B5B4D (Muted Red/Terracotta)
+- Text/Paper: #F5F0E1 (Parchment/Cream)
+- Text on dark: #F5F0E1 (Parchment/Cream)
+- Text on light: #2F2A20 (Dark Brown)
+*/
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background-color: #fdfdfd;
+  background-color: #2F2A20;
+  color: #F5F0E1;
 }
-
+label {
+  color: #F5F0E1;
+}
 #app {
   display: flex;
   flex-direction: column;
@@ -11,14 +23,24 @@ body {
 }
 
 header {
-  background: #fff;
+  display: flex;
+  align-items: center;
+  background: #4A443A;
   padding: 1rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #9B5B4D;
+}
+
+header .logo {
+  height: 50px;
+  width: auto;
+  margin-right: 1rem;
+  border-radius: 50%;
 }
 
 h1 {
   margin: 0;
   font-size: 1.5rem;
+  color: #F5F0E1;
 }
 
 main {
@@ -31,8 +53,8 @@ main {
   width: 650px;
   padding: 1rem;
   overflow-y: auto;
-  background-color: #fff;
-  border-right: 1px solid #eee;
+  background-color: #2F2A20;
+  border-right: 1px solid #9B5B4D;
   box-sizing: border-box;
 }
 
@@ -40,25 +62,27 @@ main {
   flex: 1;
   padding: 2rem;
   overflow: auto;
-  background-color: #f0f0f0;
+  background-color: #4A443A;
 }
 
 textarea {
   width: 100%;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #9B5B4D;
   border-radius: 4px;
   padding: 0.5rem;
   font-size: 1em;
   font-family: 'EB Garamond';
   box-sizing: border-box;
+  background-color: #F5F0E1;
+  color: #2F2A20;
 }
 
 button {
   width: 100%;
   padding: 0.75rem;
-  background: #333;
-  color: white;
+  background: #9B5B4D;
+  color: #F5F0E1;
   border: none;
   cursor: pointer;
   border-radius: 4px;
@@ -67,11 +91,11 @@ button {
 }
 
 button:hover {
-  background: #555;
+  background: #4A443A;
 }
 
 details {
-  border: 1px solid #ccc;
+  border: 1px solid #9B5B4D;
   border-radius: 4px;
   margin-bottom: 1rem;
 }
@@ -80,9 +104,8 @@ summary {
   cursor: pointer;
   font-weight: bold;
   padding: 0.75rem;
-  background: #333;
-  color: white;
-  border-bottom: 1px solid #ccc;
+  background: #4A443A;
+  color: #F5F0E1;
 }
 
 

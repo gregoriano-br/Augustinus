@@ -1,6 +1,6 @@
 {
   "name": "augustinus",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "Uma ferramenta para transformar texto em notação gregoriana GABC",
   "main": "dist/index.js",
   "bin": {
@@ -16,7 +16,7 @@
     "assets/"
   ],
   "dependencies": {
-    "separador-silabas": "^2.0.0",
+    "separador-silabas": "^2.3.0",
     "yargs": "^17.0.0"
   },
   "devDependencies": {

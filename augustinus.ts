@@ -108,13 +108,6 @@ function applyModel(lyrics: string, gabcModel: string): string {
 
     return gabcOutput;
 }
-function convertExsurge(input: string): string {
-    let result: string = input;
-    result = result.replaceAll("<c><sp>V/</sp>.</c>", "<c><sp>V/</sp></c>");
-    result = result.replaceAll("<c><sp>R/</sp>.</c>", "<c><sp>V/</sp></c>");
-    result = result.replaceAll("<nlba>", "");
-    return result;
-}
 export interface Pattern {
     symbol: string;
     gabc: string;
@@ -136,7 +129,6 @@ export interface Model {
 export interface Parameters {
     addOptionalStart?: boolean;
     addOptionalEnd?: boolean;
-    exsurge?: boolean;
     removeNumbers?: boolean;
     removeParenthesis?: boolean;
     separator: string;
@@ -169,7 +161,6 @@ export default function generateGabc(input: string, modelObject: Model, paramete
     if (parametersObject.removeParenthesis) {
         input = input.replace(/\(.*\)/g, "");
     }
-    // exceção 'Por isso,'
     let regex_endings: string = "([\\" + parametersObject.separator;
     for (let i = 0; i < modelObject.patterns.length; i++) {
         const symbol: string = modelObject.patterns[i].symbol;
@@ -184,6 +175,11 @@ export default function generateGabc(input: string, modelObject: Model, paramete
     let gabcLines: string[] = [];
 
     for (const chunk of chunks) {
+        if(modelObject.type === "prefacio" && modelObject.tom === "solene" && chunk == "Por isso,")
+        {
+            gabcLines.push("Por(f) is(ef)so,(f) (,) ");
+            continue
+        }
         let findIndex = model.find.indexOf(chunk + parametersObject.separator)
         if (findIndex !== -1) {
             const replacement = model.replace[findIndex];
@@ -216,10 +212,6 @@ export default function generateGabc(input: string, modelObject: Model, paramete
             gabcLines[0] = model.start + gabcLines[0];
         }
         resultGabc = gabcLines.join("\n");
-    }
-
-    if (parametersObject.exsurge) {
-        resultGabc = convertExsurge(resultGabc);
     }
     resultGabc = resultGabc.replaceAll(/'\(.\)/gm, "(,)");
     return resultGabc;

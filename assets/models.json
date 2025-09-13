@@ -124,12 +124,8 @@
                 "gabc": "(f) (gr gr gr) (hr1) (gr) (g) (,)"
             }
         ],
-        "find": [
-            "Por isso,"
-        ],
-        "replace": [
-            "Por(f) is(ef)so,(f) (,) "
-        ]
+        "find": [],
+        "replace": []
     },
     {
         "name": "Prefácio tom simples",

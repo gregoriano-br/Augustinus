@@ -1,14 +1,13 @@
+import { GregorianChantSVGRenderer, GregorioScore, ChantContext } from '@testneumz/nabc-lib';
 import generateGabc, { defaultModels } from '../../augustinus';
 import type { Model, Parameters } from '../../augustinus';
-declare const exsurge: any;
-
 let models: Model[] = defaultModels;
+let renderer: GregorianChantSVGRenderer | null = null;
 
 const modelSelect = document.getElementById('model') as HTMLSelectElement;
 const separatorInput = document.getElementById('separator') as HTMLInputElement;
 const addOptionalStartCheckbox = document.getElementById('addOptionalStart') as HTMLInputElement;
 const addOptionalEndCheckbox = document.getElementById('addOptionalEnd') as HTMLInputElement;
-const exsurgeCheckbox = document.getElementById('exsurge') as HTMLInputElement;
 const removeNumbersCheckbox = document.getElementById('removeNumbers') as HTMLInputElement;
 const removeParenthesisCheckbox = document.getElementById('removeParenthesis') as HTMLInputElement;
 const removeSeparatorCheckbox = document.getElementById('removeSeparator') as HTMLInputElement;
@@ -55,21 +54,26 @@ function handleModelChange() {
     }
   }
 }
+// const chantContainer = document.getElementById('chant-container') as HTMLDivElement;
+function gabcToSvg(gabc: string) {
+  if (renderer === null) {
+    renderer = new GregorianChantSVGRenderer(chantContainer);
+  }
 
-function initializeAndLayoutChant(gabc: string) {
-  const ctxt = new exsurge.ChantContext();
-  ctxt.lyricTextFont = "'Crimson Text', serif";
-  ctxt.dropCapTextFont = ctxt.lyricTextFont;
-  ctxt.annotationTextFont = ctxt.lyricTextFont;
+  if (!gabc) {
+    chantContainer.innerHTML = "";
+    return;
+  }
 
-  const mappings = exsurge.Gabc.createMappingsFromSource(ctxt, gabc);
-  const score = new exsurge.ChantScore(ctxt, mappings, true);
-
-  score.performLayoutAsync(ctxt, () => {
-    score.layoutChantLines(ctxt, chantContainer.clientWidth, () => {
-      chantContainer.innerHTML = score.createSvg(ctxt);
-    });
-  });
+  try {
+    const context = new ChantContext();
+    const score = new GregorioScore(context);
+    score.interprete(gabc);
+    renderer.renderSvg(score);
+  } catch (e) {
+    console.error(e);
+    // todo: better error handling
+  }
 }
 
 function generate() {
@@ -82,10 +86,9 @@ function generate() {
   }
 
   const parameters: Parameters = {
-    separator: separatorInput.value.replaceAll('\\n', '\n'),
+    separator: separatorInput.value.replaceAll('\n', '\n'),
     addOptionalStart: addOptionalStartCheckbox.checked,
     addOptionalEnd: addOptionalEndCheckbox.checked,
-    exsurge: exsurgeCheckbox.checked,
     removeNumbers: removeNumbersCheckbox.checked,
     removeParenthesis: removeParenthesisCheckbox.checked,
     removeSeparator: removeSeparatorCheckbox.checked,
@@ -98,14 +101,14 @@ function generate() {
   const gabc = generateGabc(inputText, selectedModel, parameters);
   gabcTextArea.value = gabc;
 
-  initializeAndLayoutChant(gabc);
+  gabcToSvg(gabc);
 }
 
 modelSelect.addEventListener('change', handleModelChange);
 generateButton.addEventListener('click', generate);
 gabcTextArea.addEventListener('input', () => {
   const gabc = gabcTextArea.value;
-  initializeAndLayoutChant(gabc);
+  gabcToSvg(gabc);
 });
 
 models.forEach((model, index) => {
@@ -115,3 +118,25 @@ models.forEach((model, index) => {
   modelSelect.appendChild(option);
 });
 handleModelChange();
+
+const exportSvgButton = document.getElementById('export-svg') as HTMLButtonElement;
+const exportPngButton = document.getElementById('export-png') as HTMLButtonElement;
+const exportPdfButton = document.getElementById('export-pdf') as HTMLButtonElement;
+
+exportSvgButton.addEventListener('click', () => {
+  if (renderer) {
+    renderer.exportSvg('chant.svg');
+  }
+});
+
+exportPngButton.addEventListener('click', () => {
+  if (renderer) {
+    renderer.exportPng('chant.png');
+  }
+});
+
+exportPdfButton.addEventListener('click', () => {
+  if (renderer) {
+    renderer.exportPdf('chant.pdf');
+  }
+});
