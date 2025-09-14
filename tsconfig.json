@@ -2,19 +2,14 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "outDir": "./dist",
+    "lib": ["ESNext", "DOM"],
+    "moduleResolution": "bundler",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "declaration": true,
-    "resolveJsonModule": true,
-    "moduleResolution": "Bundler",
-    "baseUrl": ".",
-    "paths": {
-      "./*": ["./*"]
-    }
-  },
-  "include": ["./**/*.ts", "./assets/models.json"],
-  "exclude": ["./dist", "./frontend"]
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true
+  }
 }

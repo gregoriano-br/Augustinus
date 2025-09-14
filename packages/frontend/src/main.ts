@@ -1,6 +1,6 @@
 import { GregorianChantSVGRenderer, GregorioScore, ChantContext } from '@testneumz/nabc-lib';
-import generateGabc, { defaultModels } from '../../augustinus';
-import type { Model, Parameters } from '../../augustinus';
+import generateGabc, { defaultModels } from '@augustinus/core';
+import type { Model, Parameters } from '@augustinus/core';
 let models: Model[] = defaultModels;
 let renderer: any | null = null;
 

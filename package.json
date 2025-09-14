@@ -1,27 +1,18 @@
 {
-  "name": "augustinus",
-  "version": "3.2.2",
-  "description": "Uma ferramenta para transformar texto em notação gregoriana GABC",
-  "main": "dist/index.js",
-  "bin": {
-    "augustinus": "dist/cli.js"
-  },
+  "name": "augustinus-monorepo",
+  "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "start": "bun run cli.ts"
+    "build": "bun run -w build",
+    "start:frontend": "bun run --filter=augustinus-frontend dev",
+    "start:cli": "bun run --filter=@augustinus/cli start"
   },
-  "files": [
-    "dist/",
-    "assets/"
+  "workspaces": [
+    "packages/*"
   ],
-  "dependencies": {
-    "separador-silabas": "^2.3.0",
-    "yargs": "^17.0.0"
-  },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "@types/yargs": "^17.0.0",
     "esbuild": "^0.25.9",
     "typescript": "^5.0.0"
   }

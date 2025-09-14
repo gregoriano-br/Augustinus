@@ -1,11 +1,10 @@
 #!/usr/bin/env node
-import generateGabc, { type Model, type Parameters } from "./augustinus.js";
-
+import generateGabc, { type Model, type Parameters } from "@augustinus/core";
+import { defaultModels } from "@augustinus/core"
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import fs from 'fs';
 import path from 'path';
-import models from './assets/models.json' with { type: 'json' };
 
 
     const argv = yargs(hideBin(process.argv))
@@ -31,7 +30,7 @@ import models from './assets/models.json' with { type: 'json' };
         .alias('help', 'h')
         .parseSync();
 
-    const modelObject = models.find((m: Model) => m.name === argv.model);
+    const modelObject = defaultModels.find((m: Model) => m.name === argv.model);
 
     if (!modelObject) {
         console.error(`Model '${argv.model}' not found.`);

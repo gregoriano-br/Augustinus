@@ -1,5 +1,5 @@
 import {syllable, tonic} from "separador-silabas";
-import defaultModels from './assets/models.json';
+import defaultModels from '../assets/models.json';
 
 function replaceFromEnd(input: string, find: string, replaceWith: string, limit?: number): string {
     let result: string = input;
