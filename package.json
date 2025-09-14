@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "bun run -w build",
+    "build": "bun run build",
     "start:frontend": "bun run --filter=augustinus-frontend dev",
     "start:cli": "bun run --filter=@augustinus/cli start"
   },
