@@ -4,7 +4,9 @@
   "description": "Uma ferramenta para transformar texto em notação gregoriana GABC",
   "main": "src/index.ts",
   "type": "module",
-  "scripts": {},
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "separador-silabas": "^2.3.0"
   }

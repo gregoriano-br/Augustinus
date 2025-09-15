@@ -9,20 +9,20 @@ import path from 'path';
 
     const argv = yargs(hideBin(process.argv))
         .options({
-            text: { type: 'string', alias: 't', description: 'Input text to convert to GABC' },
-            inputFile: { type: 'string', alias: 'i', description: 'Input file path' },
-            outputFile: { type: 'string', alias: 'o', description: 'Output file path' },
-            model: { type: 'string', demandOption: true, alias: 'm', description: 'Name of the model to use' },
-            addOptionalStart: { type: 'boolean', default: false, alias: 'a', description: 'Add optional start' },
-            addOptionalEnd: { type: 'boolean', default: false, description: 'Add optional end' },
-            removeNumbers: { type: 'boolean', default: false, description: 'Remove numbers from input' },
-            removeParenthesis: { type: 'boolean', default: true, description: 'Remove parenthesis and their content from input' },
-            separator: { type: 'string', default: '\n', description: 'Separator for chunks of text' },
-            removeSeparator: { type: 'boolean', default: true, description: 'If false, the separator character will be used to join GABC lines.' }
+            text: { type: 'string', alias: 't', description: 'Texto de entrada para converter para GABC' },
+            input: { type: 'string', alias: 'i', description: 'Caminho do arquivo de entrada' },
+            output: { type: 'string', alias: 'o', description: 'Caminho do arquivo de saída' },
+            model: { type: 'string', demandOption: true, alias: 'm', description: 'Nome do modelo a ser usado' },
+            addOptionalStart: { type: 'boolean', default: false, description: 'Adicionar início opcional' },
+            addOptionalEnd: { type: 'boolean', default: false, description: 'Adicionar final opcional' },
+            removeNumbers: { type: 'boolean', default: false, description: 'Remover números da entrada' },
+            removeParenthesis: { type: 'boolean', default: true, description: 'Remover parênteses e seu conteúdo da entrada' },
+            separator: { type: 'string', default: '\n', description: 'Separador para pedaços de texto' },
+            removeSeparator: { type: 'boolean', default: true, description: 'Se falso, o caractere separador será usado para unir as linhas GABC.' }
         })
-        .check((argv: { text: any; inputFile: any; }) => {
-            if (!argv.text && !argv.inputFile) {
-                throw new Error('Either --text or --inputFile must be provided.');
+        .check((argv: { text: any; input: any; }) => {
+            if (!argv.text && !argv.input) {
+                throw new Error('É necessário fornecer --text ou --input.');
             }
             return true;
         })
@@ -33,16 +33,16 @@ import path from 'path';
     const modelObject = defaultModels.find((m: Model) => m.name === argv.model);
 
     if (!modelObject) {
-        console.error(`Model '${argv.model}' not found.`);
+        console.error(`Modelo '${argv.model}' não encontrado.`);
         process.exit(1);
     }
 
     let inputText = argv.text as string;
-    if (argv.inputFile) {
+    if (argv.input) {
         try {
-            inputText = fs.readFileSync(argv.inputFile, 'utf-8');
+            inputText = fs.readFileSync(argv.input, 'utf-8');
         } catch (error) {
-            console.error(`Error reading input file: ${(error as Error).message}`);
+            console.error(`Erro ao ler o arquivo de entrada: ${(error as Error).message}`);
             process.exit(1);
         }
     }
@@ -58,12 +58,12 @@ import path from 'path';
 
     const gabc = generateGabc(inputText, modelObject, parameters);
 
-    if (argv.outputFile) {
+    if (argv.output) {
         try {
-            fs.writeFileSync(argv.outputFile, gabc);
-            console.log(`GABC output written to ${argv.outputFile}`);
+            fs.writeFileSync(argv.output, gabc);
+            console.log(`Saída GABC escrita em ${argv.output}`);
         } catch (error) {
-            console.error(`Error writing to output file: ${(error as Error).message}`);
+            console.error(`Erro ao escrever no arquivo de saída: ${(error as Error).message}`);
             process.exit(1);
         }
     } else {

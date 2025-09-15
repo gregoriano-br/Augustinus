@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "bun run build",
     "start:frontend": "bun run --filter=augustinus-frontend dev",
-    "start:cli": "bun run --filter=@augustinus/cli start"
+    "start:cli": "bun run --filter=@augustinus/cli start",
+    "start:api": "bun run --filter=@augustinus/api start"
   },
   "workspaces": [
     "packages/*"
