@@ -141,7 +141,7 @@ Um agradecimento especial à **[Neumz](https://neumz.com/)** e às pessoas que t
 *   **[Joshua Guenther](https://github.com/joshuaguenther)**: desenvolvedor do Scrib.io.
 *   **Matthias Bry**: por escrever a especificação e depurar o Scrib.io.
 
-E, claro, a todos os contribuidores do projeto **[Gregorio](http.gregorio-project.github.io/)**.
+E, claro, a todos os contribuidores do projeto **[Gregorio](https://github.com/gregorio-project/gregorio)**.
 
 ## Licença
 

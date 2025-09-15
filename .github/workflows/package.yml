@@ -16,6 +16,6 @@ jobs:
           bun-version: 'latest' # You can specify a version like '1.x' or '1.0.0'
           registry-url: 'https://registry.npmjs.org'
       - run: bun ci # Equivalent to npm ci for reproducible installs [2, 12]
-      - run: bun publish --provenance --access public # Bun has a direct publish command [7, 9]
+      - run: bun publish packages/core --provenance --access public # Bun has a direct publish command [7, 9]
         env:
           NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
