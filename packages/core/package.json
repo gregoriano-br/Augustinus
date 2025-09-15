@@ -1,6 +1,6 @@
 {
   "name": "@augustinus/core",
-  "version": "3.2.3",
+  "version": "3.2.2",
   "description": "Uma ferramenta para transformar texto em notação gregoriana GABC",
   "main": "src/index.ts",
   "type": "module",
