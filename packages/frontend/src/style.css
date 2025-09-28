@@ -1,3 +1,20 @@
+@font-face {
+  font-family: 'greciliae';
+  src: url('../fonts/greciliae.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'gregall';
+  src: url('../fonts/gregall.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'grelaon';
+  src: url('../fonts/grelaon.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'greextra';
+  src: url('../fonts/greextra.ttf') format('truetype');
+}
+
 /* New Color Palette:
 - Background: #2F2A20 (Dark Brown)
 - Primary/Controls: #4A443A (Slightly lighter brown)
