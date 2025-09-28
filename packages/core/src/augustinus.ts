@@ -19,7 +19,7 @@ function replaceFromEnd(input: string, find: string, replaceWith: string, limit?
 
     return result;
 }
-function applyModel(lyrics: string, gabcModel: string, separator: string): string {
+function applyModel(lyrics: string, gabcModel: string): string {
     const taggedParts: string[] = [];
     const placeholder = "||TAGGED_PART||";
     
@@ -31,9 +31,6 @@ function applyModel(lyrics: string, gabcModel: string, separator: string): strin
     let wordsWithNotePlaceholders: string[] = deTaggedLyrics.split(/\s+/).filter(w => w).map(word => {
         if (word === placeholder) {
             return taggedParts.shift() || "";
-        }
-        else if(word === separator){
-            return word;
         }
         return syllable(word) + "@";
     });
@@ -189,7 +186,7 @@ export default function generateGabc(input: string, modelObject: Model, paramete
             if (replacement !== undefined) {
                 gabcLines.push(replacement);
             } else {
-                gabcLines.push(applyModel(chunk, model.default, parametersObject.separator));
+                gabcLines.push(applyModel(chunk, model.default));
             }
             continue;
         }
@@ -198,9 +195,9 @@ export default function generateGabc(input: string, modelObject: Model, paramete
         const pattern = model.patterns.find(p => p.symbol === lastChar);
         if (pattern) {
             const text = model.type === 'evangelho' ? chunk.trim() : chunk.slice(0, -1).trim();
-            gabcLines.push(applyModel(text, pattern.gabc, pattern.symbol));
+            gabcLines.push(applyModel(text, pattern.gabc));
         } else {
-            gabcLines.push(applyModel(chunk.trim() + (parametersObject.removeSeparator === false ? parametersObject.separator : ''), model.default, parametersObject.separator));
+            gabcLines.push(applyModel(chunk.trim() + (parametersObject.removeSeparator === false ? parametersObject.separator : ''), model.default));
         }
     }
 
