@@ -1,0 +1,49 @@
+[    
+    {
+        "name": "Salmo tom V (teste)",
+        "type": "salmo",
+        "tom": "V",
+        "intonation": "(d) (f)",
+        "clef": "(c3)",
+        "patterns": [
+            {
+                "symbol": "*",
+                "gabc": "(h) (hr hr hr) (i) (hr) (h.) (;)"
+            },
+            {
+                "symbol": "\n",
+                "gabc": "(h) (hr hr hr) (i) (gr) (h) (fr) (f.) (::)"
+            },
+            {
+                "symbol": "+",
+                "gabc": "(h) (hr hr hr) (i) (fr) (f.) (;)"
+            }
+        ],
+        "find": [],
+        "replace": []
+    },
+
+    {
+        "name": "Salmo tom VIII ",
+        "type": "salmo",
+        "tom": "V",
+        "intonation": "(g) (h)",
+        "clef": "(c4)",
+        "patterns": [
+            {
+                "symbol": "*",
+                "gabc": "(j) (jr jr jr) ('k) (jr) (j.) (:)"
+            },
+            {
+                "symbol": "+",
+                "gabc": "(j) (jr jr jr) ('j) (hr) (h.) (;)"
+            },
+            {
+                "symbol": "\n",
+                "gabc": "(j) (jr jr jr) (i) (j) ('h) (gr) (g.) (::)"
+            }
+        ],
+        "find": [],
+        "replace": []
+    }
+]
