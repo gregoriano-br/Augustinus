@@ -71,8 +71,8 @@ function applyModel(lyrics: string, gabcModel: string): string {
         const tonicIndex = i - input.findLastIndex(syllable => syllable.includes("#")); // Procura pelo índice da primeira sílaba tônica de trás pra frente
         switch (tonicIndex) {
             case 1:
-                replaceAt(i - 1, tonicNote);
-                input[i - 1] += notes[notes.length - 1];
+                replaceAt(i - 1, tonicNote.replace(")", ""));
+                input[i - 1] += notes[notes.length - 1].replace("(", "");
                 break;
             case 2:
                 replaceAt(i - 2, tonicNote);
@@ -101,18 +101,18 @@ function applyModel(lyrics: string, gabcModel: string): string {
         }
         // Separa as notas do sufixo em dois grupos de acentos
         let firstAccentIndex = notes.findIndex(note => note.includes("'"));
-        let secondAccentIndex = notes.findIndex((note, i) => i > 0 && note.includes("'"));
+        let secondAccentIndex = notes.findIndex((note, i) => i > firstAccentIndex && note.includes("'"));
+        let preNotesIndex = (firstAccentIndex - 1) >= 0 ? (firstAccentIndex - 1) : false;
         // Se só tiver um acento, mantém um único grupo
-        secondAccentIndex = secondAccentIndex === -1 ? 0 : secondAccentIndex;
 
-        let firstAccentNotes = notes.slice(firstAccentIndex, secondAccentIndex);
-        let secondAccentNotes = notes.slice(secondAccentIndex);
+        let firstAccentNotes = secondAccentIndex === -1 ? notes.slice(firstAccentIndex) : notes.slice(firstAccentIndex, secondAccentIndex);
+        let secondAccentNotes = secondAccentIndex === -1 ? [] : notes.slice(secondAccentIndex);
+        let preNotes = preNotesIndex !== false ? notes.slice(0, preNotesIndex + 1) : false;
+        console.log({firstAccentNotes, secondAccentNotes, preNotes});
 
-        // Aplica a lógica ao primeiro grupo
-        psalmLogic(gabcOutputArray, secondAccentNotes);
-
-        // Se tiver dois grupos, prossegue para aplicar a lógica novamente, com o final cortado
-        if (secondAccentIndex !== 0){
+        // Se tiver dois grupos, o secondAccentNotes é aplicado primeiro, depois cortado do array, o firstAccentNotes é aplicado ao que sobrou e os dois arrays são concatenados
+        if (secondAccentIndex !== -1) {
+            psalmLogic(gabcOutputArray, secondAccentNotes);
             const firstAccentGabcIndex = gabcOutputArray.findIndex(syllable => syllable.includes("("));
 
             const firstAccentGabc = gabcOutputArray.slice(firstAccentGabcIndex);
@@ -122,7 +122,19 @@ function applyModel(lyrics: string, gabcModel: string): string {
 
             gabcOutputArray = secondAccentGabc.concat(firstAccentGabc);
         }
-
+        // Se tiver só um grupo, aplica o firstAccentNotes normalmente
+        else {
+            psalmLogic(gabcOutputArray, firstAccentNotes);
+        }
+        // Se tiver um grupo de notas prévias, aplica a às sílabas restantes
+        if (preNotes){
+            for (let i = preNotes.length - 1, j = gabcOutputArray.length - 1; i >= 0 && j >= 0; j--) {
+                if (!gabcOutputArray[j].includes("(")) {
+                    gabcOutputArray[j] = gabcOutputArray[j].replace("@", preNotes[i]);
+                    i--;
+                }
+            }
+        }
         // Limpa os caracteres de marcação
         gabcOutputArray = gabcOutputArray.map(syllable => syllable.replace(/#|(?<=\()'/g, ""));
 
@@ -281,8 +293,10 @@ export default function generateGabc(input: string, modelObject: Model, paramete
 export { defaultModels };
 
 //let lyrics = "Não aceita o conselho dos ímpios"
-let lyrics = "O Senhor é fiel para sempre,"
-//let lyrics = "Ó Sião, o teu Deus reinará";
-let gabcModel = "(h) (hr hr hr) ('i) (gr) (g) ('h) (fr) (f.)"
+// lyrics = "O Senhor é fiel para sempre,"
+let lyrics = "Ó Sião, o teu Deus reinará";
 //let gabcModel = "(j) (jr jr jr) ('k) (jr) (j.)"
+//let gabcModel = "(h) (hr hr hr) ('i) (gr) (g) ('h) (fr) (f.)"
+//let gabcModel = "(h) (hr hr hr) (g) (f) ('gh) (gr) (gvFED.)"
+let gabcModel = "(h) (hr hr hr) (g) ('e) (fr) (f.)"
 console.log(applyModel(lyrics, gabcModel))
