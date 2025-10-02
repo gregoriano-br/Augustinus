@@ -65,22 +65,23 @@ function applyModel(lyrics: string, gabcModel: string): string {
     // Lógica de posicionamento das notas nas sílabas nova
     const psalmLogic = (input: string[], notes: string[]) => { //Função que aplica a lógica no array de sílabas com as tônicas marcadas com #
         const i = input.length;
-        const tonicNote = notes.filter(note => note.includes("'")).join(""); // Procura pela nota da tônica melódica
+        const tonicNote = notes.filter(note => note.includes("'")).reverse(); // Procura pela nota da tônica melódica
         const replaceAt = (index: number, value: string) => {input[index] = input[index].replace("@", value)}; // Função menor, parecida com a replaceFromEnd, mas para array
         const isTonic = (index: number): boolean => input[index]?.includes("#") ?? false; // Função que será usada mais tarde
         const tonicIndex = i - input.findLastIndex(syllable => syllable.includes("#")); // Procura pelo índice da primeira sílaba tônica de trás pra frente
+        console.log(tonicNote);
         switch (tonicIndex) {
             case 1:
-                replaceAt(i - 1, tonicNote.replace(")", ""));
+                replaceAt(i - 1, tonicNote[0].replace(")", ""));
                 input[i - 1] += notes[notes.length - 1].replace("(", "");
                 break;
             case 2:
-                replaceAt(i - 2, tonicNote);
+                replaceAt(i - 2, tonicNote[0]);
                 replaceAt(i - 1, notes[notes.length - 1]);
                 break;
 
             case 3:
-                replaceAt(i - 3, tonicNote);
+                replaceAt(i - 3, tonicNote[1]? tonicNote[1] : tonicNote[0]);
                 replaceAt(i - 2, notes[notes.length - 2]);
                 replaceAt(i - 1, notes[notes.length - 1]);
                 break;
@@ -293,10 +294,11 @@ export default function generateGabc(input: string, modelObject: Model, paramete
 export { defaultModels };
 
 //let lyrics = "Não aceita o conselho dos ímpios"
-// lyrics = "O Senhor é fiel para sempre,"
+//let lyrics = "O Senhor é fiel para sempre,"
 let lyrics = "Ó Sião, o teu Deus reinará";
 //let gabcModel = "(j) (jr jr jr) ('k) (jr) (j.)"
 //let gabcModel = "(h) (hr hr hr) ('i) (gr) (g) ('h) (fr) (f.)"
 //let gabcModel = "(h) (hr hr hr) (g) (f) ('gh) (gr) (gvFED.)"
-let gabcModel = "(h) (hr hr hr) (g) ('e) (fr) (f.)"
+//let gabcModel = "(h) (hr hr hr) (g) ('e) (fr) (f.)"
+let gabcModel = "(j) (jr jr jr) ('k) (jr) (j) ('jr) ('ih) (j.)"
 console.log(applyModel(lyrics, gabcModel))
