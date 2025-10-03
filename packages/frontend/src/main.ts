@@ -12,6 +12,7 @@ const removeNumbersCheckbox = document.getElementById('removeNumbers') as HTMLIn
 const removeParenthesisCheckbox = document.getElementById('removeParenthesis') as HTMLInputElement;
 const removeSeparatorCheckbox = document.getElementById('removeSeparator') as HTMLInputElement;
 const inputTextArea = document.getElementById('input') as HTMLTextAreaElement;
+const metadataTextArea = document.getElementById('metadata') as HTMLTextAreaElement;
 const gabcTextArea = document.getElementById('gabc') as HTMLTextAreaElement;
 const generateButton = document.getElementById('generate') as HTMLButtonElement;
 const chantContainer = document.getElementById('chant-container') as HTMLDivElement;
@@ -96,6 +97,7 @@ function generate() {
     customClef: customClefSelect.value,
     customPattern: customPatternTextArea.value,
     customStart: customStartInput.value,
+    header: metadataTextArea.value,
   };
 
   const gabc = generateGabc(inputText, selectedModel, parameters);

@@ -137,6 +137,7 @@ export interface Parameters {
     customClef?: string;
     customPattern?: string;
     customStart?: string;
+    header?: string;
 }
 
 export default function generateGabc(input: string, modelObject: Model, parametersObject: Parameters): string {
@@ -214,6 +215,9 @@ export default function generateGabc(input: string, modelObject: Model, paramete
         resultGabc = gabcLines.join("\n");
     }
     resultGabc = resultGabc.replaceAll(/'\(.\)/gm, "(,)");
+    if (parametersObject.header) {
+        resultGabc = parametersObject.header + "\n%%\n" + resultGabc;
+    }
     return resultGabc;
 }
 
