@@ -1,4 +1,5 @@
 import {syllable, tonic} from "separador-silabas";
+//import defaultModels from '../assets/models.json' assert {type: "json"};
 import defaultModels from '../assets/psalm_models.json' assert {type: "json"};
 
 function replaceFromEnd(input: string, find: string, replaceWith: string, limit?: number): string {
@@ -60,6 +61,7 @@ function applyModel(lyrics: string, gabcModel: string): string {
     }
     
     let notes: string[] = suffixString.split(" ") || [];
+    let pause: string = notes.pop() || "";
     gabcOutput += wordsWithNotePlaceholders.join(" ");
     let gabcOutputArray: string[] = gabcOutput.split(/(?<=@)/);
     // Lógica de posicionamento das notas nas sílabas nova
@@ -69,7 +71,6 @@ function applyModel(lyrics: string, gabcModel: string): string {
         const replaceAt = (index: number, value: string) => {input[index] = input[index].replace("@", value)}; // Função menor, parecida com a replaceFromEnd, mas para array
         const isTonic = (index: number): boolean => input[index]?.includes("#") ?? false; // Função que será usada mais tarde
         const tonicIndex = i - input.findLastIndex(syllable => syllable.includes("#")); // Procura pelo índice da primeira sílaba tônica de trás pra frente
-        console.log(tonicNote);
         switch (tonicIndex) {
             case 1:
                 replaceAt(i - 1, tonicNote[0].replace(")", ""));
@@ -109,7 +110,6 @@ function applyModel(lyrics: string, gabcModel: string): string {
         let firstAccentNotes = secondAccentIndex === -1 ? notes.slice(firstAccentIndex) : notes.slice(firstAccentIndex, secondAccentIndex);
         let secondAccentNotes = secondAccentIndex === -1 ? [] : notes.slice(secondAccentIndex);
         let preNotes = preNotesIndex !== false ? notes.slice(0, preNotesIndex + 1) : false;
-        console.log({firstAccentNotes, secondAccentNotes, preNotes});
 
         // Se tiver dois grupos, o secondAccentNotes é aplicado primeiro, depois cortado do array, o firstAccentNotes é aplicado ao que sobrou e os dois arrays são concatenados
         if (secondAccentIndex !== -1) {
@@ -127,7 +127,7 @@ function applyModel(lyrics: string, gabcModel: string): string {
         else {
             psalmLogic(gabcOutputArray, firstAccentNotes);
         }
-        // Se tiver um grupo de notas prévias, aplica a às sílabas restantes
+        // Se tiver um grupo de notas prévias, aplica às sílabas restantes
         if (preNotes){
             for (let i = preNotes.length - 1, j = gabcOutputArray.length - 1; i >= 0 && j >= 0; j--) {
                 if (!gabcOutputArray[j].includes("(")) {
@@ -139,8 +139,8 @@ function applyModel(lyrics: string, gabcModel: string): string {
         // Limpa os caracteres de marcação
         gabcOutputArray = gabcOutputArray.map(syllable => syllable.replace(/#|(?<=\()'/g, ""));
 
-        // Junta o array com o GABC numa string
-        console.log(gabcOutputArray);
+        // Junta o array com o GABC numa string e adiciona a pausa no final
+        gabcOutputArray.push(pause);
         gabcOutput = gabcOutputArray.join("");
 
         // Lógica de posicionamento das notas nas sílabas anterior
@@ -295,10 +295,12 @@ export { defaultModels };
 
 //let lyrics = "Não aceita o conselho dos ímpios"
 //let lyrics = "O Senhor é fiel para sempre,"
-let lyrics = "Ó Sião, o teu Deus reinará";
+//let lyrics = "Ó Sião, o teu Deus reinará";
 //let gabcModel = "(j) (jr jr jr) ('k) (jr) (j.)"
 //let gabcModel = "(h) (hr hr hr) ('i) (gr) (g) ('h) (fr) (f.)"
 //let gabcModel = "(h) (hr hr hr) (g) (f) ('gh) (gr) (gvFED.)"
 //let gabcModel = "(h) (hr hr hr) (g) ('e) (fr) (f.)"
-let gabcModel = "(j) (jr jr jr) ('k) (jr) (j) ('jr) ('ih) (j.)"
-console.log(applyModel(lyrics, gabcModel))
+//let gabcModel = "(j) (jr jr jr) ('k) (jr) (j) ('jr) ('ih) (j.)"
+//console.log(applyModel(lyrics, gabcModel))
+
+console.log(generateGabc("Não aceita + o conselho dos ímpios * Bendito seja o nome do Senhor \n O Senhor é fiel para sempre, Ó Sião, * o teu Deus reinará", defaultModels[0], {separator: "|", removeSeparator: true, addOptionalStart: false, addOptionalEnd: false, removeNumbers: false, removeParenthesis: false}));

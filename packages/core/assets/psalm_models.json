@@ -3,21 +3,23 @@
         "name": "Salmo tom V (teste)",
         "type": "salmo",
         "tom": "V",
-        "intonation": "(d) (f)",
-        "clef": "(c3)",
+        "optional_end": "",
+        "optional_start": "(d) (f)",
+        "start": "(c3) ",
+        "default": "(h) (hr hr hr) ('i) (gr) (g) ('h) (fr) (f.) (::)",
         "patterns": [
             {
                 "symbol": "*",
-                "gabc": "(h) (hr hr hr) (i) (hr) (h.) (;)"
-            },
-            {
-                "symbol": "\n",
-                "gabc": "(h) (hr hr hr) (i) (gr) (h) (fr) (f.) (::)"
+                "gabc": "(h) (hr hr hr) ('i) (hr) (h.) (:)"
             },
             {
                 "symbol": "+",
-                "gabc": "(h) (hr hr hr) (i) (fr) (f.) (;)"
-            }
+                "gabc": "(h) (hr hr hr) ('h) (fr) (f.) (;)"
+            },
+            {
+                "symbol": "\n",
+                "gabc": "(h) (hr hr hr) ('i) (gr) (g) ('h) (fr) (f.) (::)"
+            }   
         ],
         "find": [],
         "replace": []
@@ -27,8 +29,10 @@
         "name": "Salmo tom VIII ",
         "type": "salmo",
         "tom": "V",
-        "intonation": "(g) (h)",
-        "clef": "(c4)",
+        "optional_end": "",
+        "optional_start": "(g) (h)",
+        "start": "(c4) ",
+        "default": "(h) (hr hr hr) (f) (gh) (hr1) (gr) (f) (::) ",
         "patterns": [
             {
                 "symbol": "*",
