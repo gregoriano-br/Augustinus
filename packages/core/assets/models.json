@@ -265,7 +265,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom V",
+        "name": "Salmo tom 5",
         "type": "salmo",
         "tom": "V",
         "optional_end": "",
@@ -291,7 +291,7 @@
     },
 
     {
-        "name": "Salmo tom VIII ",
+        "name": "Salmo tom 8",
         "type": "salmo",
         "tom": "VIII",
         "optional_end": "",
@@ -310,6 +310,131 @@
             {
                 "symbol": "\n",
                 "gabc": "(j) (jr jr jr) (i) (j) (hr1) (gr) (g.) (::)"
+            }
+        ],
+        "find": [],
+        "replace": []
+    },
+      {
+        "name": "Salmo tom 3b",
+        "type": "salmo",
+        "tom": "VIII",
+        "optional_end": "",
+        "optional_start": "(g) (hj)",
+        "start": "(c4) ",
+        "default": "(j) (jr jr jr) (h) (jr1) (jr) (i.) (::)",
+        "patterns": [
+            {
+                "symbol": "*",
+                "gabc": "(j) (jr jr jr) (kr1) (jr) (j) (jr1) (ihr1) (j.) (:)"
+            },
+            {
+                "symbol": "+",
+                "gabc": "(j) (jr jr jr) (jr1) (hr) (h.) (;)"
+            },
+            {
+                "symbol": "\n",
+                "gabc": "(j) (jr jr jr) (h) (jr1) (jr) (i.) (::)"
+            }
+        ],
+        "find": [],
+        "replace": []
+    },
+      {
+        "name": "Salmo tom 3a",
+        "type": "salmo",
+        "tom": "VIII",
+        "optional_end": "",
+        "optional_start": "(g) (hj)",
+        "start": "(c4) ",
+        "default": "(j) (jr jr jr) (h) (jr1) (jr) (i.h.) (::)",
+        "patterns": [
+            {
+                "symbol": "*",
+                "gabc": "(j) (jr jr jr) (kr1) (jr) (j) (jr1) (ihr1) (j.) (:)"
+            },
+            {
+                "symbol": "+",
+                "gabc": "(j) (jr jr jr) (jr1) (hr) (h.) (;)"
+            },
+            {
+                "symbol": "\n",
+                "gabc": "(j) (jr jr jr) (h) (jr1) (jr) (i.h.) (::)"
+            }
+        ],
+        "find": [],
+        "replace": []
+    },
+      {
+        "name": "Salmo tom 3a2",
+        "type": "salmo",
+        "tom": "VIII",
+        "optional_end": "",
+        "optional_start": "(g) (hj)",
+        "start": "(c4) ",
+        "default": "(j) (jr jr jr) (ji) (hi) (hr1) (gr) (g.h.) (::)",
+        "patterns": [
+            {
+                "symbol": "*",
+                "gabc": "(j) (jr jr jr) (kr1) (jr) (j) (jr1) (ihr1) (j.) (:)"
+            },
+            {
+                "symbol": "+",
+                "gabc": "(j) (jr jr jr) (jr1) (hr) (h.) (;)"
+            },
+            {
+                "symbol": "\n",
+                "gabc": "(j) (jr jr jr) (ji) (hi) (hr1) (gr) (g.h.) (::)"
+            }
+        ],
+        "find": [],
+        "replace": []
+    },
+      {
+        "name": "Salmo tom 3g",
+        "type": "salmo",
+        "tom": "VIII",
+        "optional_end": "",
+        "optional_start": "(g) (hj)",
+        "start": "(c4) ",
+        "default": "(j) (jr jr jr) (ji) (hi) (hr1) (gr) (g.) (::)",
+        "patterns": [
+            {
+                "symbol": "*",
+                "gabc": "(j) (jr jr jr) (kr1) (jr) (j) (jr1) (ihr1) (j.) (:)"
+            },
+            {
+                "symbol": "+",
+                "gabc": "(j) (jr jr jr) (jr1) (hr) (h.) (;)"
+            },
+            {
+                "symbol": "\n",
+                "gabc": "(j) (jr jr jr) (ji) (hi) (hr1) (gr) (g.) (::)"
+            }
+        ],
+        "find": [],
+        "replace": []
+    },
+      {
+        "name": "Salmo tom 3g2",
+        "type": "salmo",
+        "tom": "VIII",
+        "optional_end": "",
+         "optional_start": "(g) (hj)",
+        "start": "(c4) ",
+        "default": "(j) (jr jr jr) (h) (j) (i) (hr1) (gr) (g.) (::)",
+        "patterns": [
+            {
+                "symbol": "*",
+                "gabc": "(j) (jr jr jr) (kr1) (jr) (j) (jr1) (ihr1) (j.) (:)"
+            },
+            {
+                "symbol": "+",
+                "gabc": "(j) (jr jr jr) (jr1) (hr) (h.) (;)"
+            },
+            {
+                "symbol": "\n",
+                "gabc": "(j) (jr jr jr) (h) (j) (i) (hr1) (gr) (g.) (::)"
             }
         ],
         "find": [],
