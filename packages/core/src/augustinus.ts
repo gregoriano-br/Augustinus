@@ -28,7 +28,7 @@ function psalmLogic(input: string[], notes: string[]) { //Função que aplica a 
     const replaceAt = (index: number, value: string) => {input[index] = input[index].replace("@", value)}; // Função menor, parecida com a replaceFromEnd, mas para array
     const isTonic = (index: number): boolean => input[index]?.includes("#") ?? false; // Função que será usada mais tarde
     const tonicIndex = i - input.findLastIndex(syllable => syllable.includes("#")); // Procura pelo índice da primeira sílaba tônica de trás pra frente
-    notes = notes.map(notes => notes.replace("r", ""));
+    notes = notes.map(notes => notes.replace("r1", "").replace("r", "") || ""); // Limpa as marcações de acento das notas
     switch (tonicIndex) {
         case 1:
             replaceAt(i - 1, tonicNote[0].replace(")", ""));
@@ -54,7 +54,7 @@ function psalmLogic(input: string[], notes: string[]) { //Função que aplica a 
 };
 
 function applyModel(lyrics: string, gabcModel: string, psalm: boolean): string {
-    const unstressedMonosyllables: string[] = ["a", "e", "o", "as", "os", "um", "uns", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas", "que", "me", "te", "se", "lhe", "lhes", "com", "por", "sem"];
+    const unstressedMonosyllables: string[] = ["a", "e", "o", "as", "os", "um", "uns", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas", "que", "me", "te", "se", "lhe", "lhes", "com", "por", "sem", "seu", "seus", "meu", "meus", "teu", "teus", "eu", "tu", "mas", "ou", "sou", "foi", "ao", "aos"];
     const taggedParts: string[] = [];
     const placeholder = "||TAGGED_PART||";
     
@@ -103,7 +103,7 @@ function applyModel(lyrics: string, gabcModel: string, psalm: boolean): string {
         if (psalm) {
             // Separa as notas do sufixo em dois grupos de acentos
             let firstAccentIndex = notes.findIndex(note => note.includes("r1"));
-            let secondAccentIndex = notes.findIndex((note, i) => i > firstAccentIndex && note.includes("r1"));
+            let secondAccentIndex = notes.findIndex((note, i) => i > firstAccentIndex + 1 && note.includes("r1"));
             let preNotesIndex = (firstAccentIndex - 1) >= 0 ? (firstAccentIndex - 1) : false;
             // Se só tiver um acento, mantém um único grupo
 
@@ -111,6 +111,7 @@ function applyModel(lyrics: string, gabcModel: string, psalm: boolean): string {
             let secondAccentNotes = secondAccentIndex === -1 ? [] : notes.slice(secondAccentIndex);
             let preNotes = preNotesIndex !== false ? notes.slice(0, preNotesIndex + 1) : false;
 
+            console.log({firstAccentNotes, secondAccentNotes, preNotes});
             // Se tiver dois grupos, o secondAccentNotes é aplicado primeiro, depois cortado do array, o firstAccentNotes é aplicado ao que sobrou e os dois arrays são concatenados
             if (secondAccentIndex !== -1) {
                 psalmLogic(gabcOutputArray, secondAccentNotes);
