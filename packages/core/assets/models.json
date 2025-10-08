@@ -216,7 +216,7 @@
         ]
     },
     {
-        "name": "Salmo tom VI (teste)",
+        "name": "VI (teste)",
         "type": "salmo",
         "tom": "VI",
         "optional_end": "",
@@ -265,7 +265,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 1D",
+        "name": "1D",
         "type": "salmo",
         "tom": "1D",
         "optional_end": "",
@@ -290,7 +290,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 1D-",
+        "name": "1D-",
         "type": "salmo",
         "tom": "1D-",
         "optional_end": "",
@@ -315,7 +315,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 1D2",
+        "name": "1D2",
         "type": "salmo",
         "tom": "1D2",
         "optional_end": "",
@@ -340,7 +340,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 1f",
+        "name": "1f",
         "type": "salmo",
         "tom": "1f",
         "optional_end": "",
@@ -365,7 +365,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 1g",
+        "name": "1g",
         "type": "salmo",
         "tom": "1g",
         "optional_end": "",
@@ -390,7 +390,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 1g2",
+        "name": "1g2",
         "type": "salmo",
         "tom": "1g2",
         "optional_end": "",
@@ -415,7 +415,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 1g3",
+        "name": "1g3",
         "type": "salmo",
         "tom": "1g3",
         "optional_end": "",
@@ -440,7 +440,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 1a",
+        "name": "1a",
         "type": "salmo",
         "tom": "1a",
         "optional_end": "",
@@ -465,7 +465,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 1a2",
+        "name": "1a2",
         "type": "salmo",
         "tom": "1a2",
         "optional_end": "",
@@ -490,7 +490,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 1a3",
+        "name": "1a3",
         "type": "salmo",
         "tom": "1a3",
         "optional_end": "",
@@ -515,7 +515,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 2",
+        "name": "2",
         "type": "salmo",
         "tom": "2",
         "optional_end": "",
@@ -540,7 +540,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 3b",
+        "name": "3b",
         "type": "salmo",
         "tom": "3b",
         "optional_end": "",
@@ -565,7 +565,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 3a",
+        "name": "3a",
         "type": "salmo",
         "tom": "3a",
         "optional_end": "",
@@ -590,7 +590,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 3a2",
+        "name": "3a2",
         "type": "salmo",
         "tom": "3a2",
         "optional_end": "",
@@ -615,7 +615,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 3g",
+        "name": "3g",
         "type": "salmo",
         "tom": "3g",
         "optional_end": "",
@@ -640,7 +640,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 3g2",
+        "name": "3g2",
         "type": "salmo",
         "tom": "3g2",
         "optional_end": "",
@@ -665,7 +665,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 4g",
+        "name": "4g",
         "type": "salmo",
         "tom": "4g",
         "optional_end": "",
@@ -690,7 +690,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 4E",
+        "name": "4E",
         "type": "salmo",
         "tom": "4E",
         "optional_end": "",
@@ -715,7 +715,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 4altc",
+        "name": "4altc",
         "type": "salmo",
         "tom": "4altc",
         "optional_end": "",
@@ -740,7 +740,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 4altA",
+        "name": "4altA",
         "type": "salmo",
         "tom": "4altA",
         "optional_end": "",
@@ -765,7 +765,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 4altA*",
+        "name": "4altA*",
         "type": "salmo",
         "tom": "4altA*",
         "optional_end": "",
@@ -790,7 +790,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 4altd",
+        "name": "4altd",
         "type": "salmo",
         "tom": "4altd",
         "optional_end": "",
@@ -815,7 +815,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 5",
+        "name": "5",
         "type": "salmo",
         "tom": "5",
         "optional_end": "",
@@ -840,7 +840,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 6",
+        "name": "6",
         "type": "salmo",
         "tom": "6",
         "optional_end": "",
@@ -865,7 +865,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 6alt",
+        "name": "6alt",
         "type": "salmo",
         "tom": "6alt",
         "optional_end": "",
@@ -890,7 +890,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 7a",
+        "name": "7a",
         "type": "salmo",
         "tom": "7a",
         "optional_end": "",
@@ -915,7 +915,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 7b",
+        "name": "7b",
         "type": "salmo",
         "tom": "7b",
         "optional_end": "",
@@ -940,7 +940,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 7c",
+        "name": "7c",
         "type": "salmo",
         "tom": "7c",
         "optional_end": "",
@@ -965,7 +965,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 7c2",
+        "name": "7c2",
         "type": "salmo",
         "tom": "7c2",
         "optional_end": "",
@@ -990,7 +990,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 7d",
+        "name": "7d",
         "type": "salmo",
         "tom": "7d",
         "optional_end": "",
@@ -1015,7 +1015,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 8G",
+        "name": "8G",
         "type": "salmo",
         "tom": "8G",
         "optional_end": "",
@@ -1040,7 +1040,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 8G*",
+        "name": "8G*",
         "type": "salmo",
         "tom": "8G*",
         "optional_end": "",
@@ -1065,7 +1065,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tom 8c",
+        "name": "8c",
         "type": "salmo",
         "tom": "8c",
         "optional_end": "",
@@ -1090,7 +1090,7 @@
         "replace": []
     },
     {
-        "name": "Salmo tonus paschalis",
+        "name": "Tonus Paschalis",
         "type": "salmo",
         "tom": "t.p.",
         "optional_end": "",

@@ -28,7 +28,7 @@ function psalmLogic(input: string[], notes: string[]) { //Função que aplica a 
     const replaceAt = (index: number, value: string) => {input[index] = input[index].replace("@", value)}; // Função menor, parecida com a replaceFromEnd, mas para array
     const isTonic = (index: number): boolean => input[index]?.includes("#") ?? false; // Função que será usada mais tarde
     const tonicIndex = i - input.findLastIndex(syllable => syllable.includes("#")); // Procura pelo índice da primeira sílaba tônica de trás pra frente
-    notes = notes.map(notes => notes.replace("r1", "").replace("r", "") || ""); // Limpa as marcações de acento das notas
+    notes = notes.map(notes => notes/*.replace("r1", "")*/.replace("r", "") || ""); // Limpa as marcações de acento das notas
     switch (tonicIndex) {
         case 1:
             replaceAt(i - 1, tonicNote[0].replace(")", ""));
@@ -99,6 +99,20 @@ function applyModel(lyrics: string, gabcModel: string, psalm: boolean): string {
     gabcOutput += wordsWithNotePlaceholders.join(" ");
     let gabcOutputArray: string[] = gabcOutput.split(/(?<=@)/);
 
+    for (let i = 0; i < gabcOutputArray.length; i++) {
+        const currentSyllable = gabcOutputArray[i] || "";
+        const nextSyllable = gabcOutputArray[i + 1] || "";
+
+        const isSyllableElidable = /^(?!\s*#).*?[aeiou]@?$/i.test(currentSyllable);
+        const isNextSyllableElidable = /^\s+(#?[aeiou])/i.test(nextSyllable);
+
+        if (isSyllableElidable && isNextSyllableElidable) {
+            gabcOutputArray[i] = currentSyllable.replace(/@/g, "") + nextSyllable;
+            gabcOutputArray.splice(i + 1, 1);
+            i--;
+        }
+    }
+
     if (isDynamic && lastWordForTonic) {
         if (psalm) {
             // Separa as notas do sufixo em dois grupos de acentos
@@ -111,7 +125,6 @@ function applyModel(lyrics: string, gabcModel: string, psalm: boolean): string {
             let secondAccentNotes = secondAccentIndex === -1 ? [] : notes.slice(secondAccentIndex);
             let preNotes = preNotesIndex !== false ? notes.slice(0, preNotesIndex + 1) : false;
 
-            console.log({firstAccentNotes, secondAccentNotes, preNotes});
             // Se tiver dois grupos, o secondAccentNotes é aplicado primeiro, depois cortado do array, o firstAccentNotes é aplicado ao que sobrou e os dois arrays são concatenados
             if (secondAccentIndex !== -1) {
                 psalmLogic(gabcOutputArray, secondAccentNotes);
@@ -310,7 +323,6 @@ export default function generateGabc(input: string, modelObject: Model, paramete
             versicle[0] = versicle[0].replace(/\([a-zA-Z]\)/g, match => count < 2 ? intonnationNotes[count++] : match);
         }
         gabcLines = versicles.flat();
-    console.log(versicles);
     }
     let resultGabc = "";
     if (parametersObject.addOptionalStart  && !psalm) {

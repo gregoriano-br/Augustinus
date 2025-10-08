@@ -1,10 +1,13 @@
 import { GregorianChantSVGRenderer, GregorioScore, ChantContext } from '@testneumz/nabc-lib';
 import generateGabc, { defaultModels } from '@augustinus/core';
 import type { Model, Parameters } from '@augustinus/core';
-let models: Model[] = defaultModels;
+let models: Model[] = defaultModels.filter((model) => model.type !== 'salmo');
 let renderer: any | null = null;
+let psalmModels: Model[] = defaultModels.filter((model) => model.type === 'salmo'); 
 
 const modelSelect = document.getElementById('model') as HTMLSelectElement;
+const psalmSelect = document.getElementById('psalm') as HTMLSelectElement;
+//const solemn = document.getElementById('solemn') as HTMLInputElement;
 const separatorInput = document.getElementById('separator') as HTMLInputElement;
 const addOptionalStartCheckbox = document.getElementById('addOptionalStart') as HTMLInputElement;
 const addOptionalEndCheckbox = document.getElementById('addOptionalEnd') as HTMLInputElement;
@@ -24,36 +27,44 @@ const customClefSelect = document.getElementById('custom-clef') as HTMLSelectEle
 const customPatternTextArea = document.getElementById('custom-pattern') as HTMLTextAreaElement;
 const customStartInput = document.getElementById('custom-start') as HTMLInputElement;
 
-function handleModelChange() {
-  const selectedModelIndex = parseInt(modelSelect.value, 10);
-  const selectedModel = models[selectedModelIndex];
+function handleModelChange(event: Event) {
+  const target = event.target as HTMLSelectElement;
 
-  if (selectedModel) {
-    if (selectedModel.start) {
-      customStartInput.value = selectedModel.start;
-    } else {
-      customStartInput.value = customStartInput.defaultValue;
-    }
-    if (selectedModel.default) {
-      customPatternTextArea.value = selectedModel.default;
-    } else {
-      customPatternTextArea.value = customPatternTextArea.defaultValue;
-    }
+  if (target === modelSelect) {
+    psalmSelect.value = '';
+  } else if (target === psalmSelect) {
+    modelSelect.value = '';
+  }
 
-    if (selectedModel.type === 'custom') {
-      customOptions.style.display = 'block';
-      if (selectedModel.tom === 'simples') {
-        customSimplesOptions.style.display = 'block';
-        customSoleneOptions.style.display = 'none';
-      } else if (selectedModel.tom === 'solene') {
-        customSimplesOptions.style.display = 'none';
-        customSoleneOptions.style.display = 'block';
-      }
-    } else {
-      customOptions.style.display = 'none';
+  let selectedModel: Model | null = null;
+
+  if (modelSelect.value) {
+    const index = parseInt(modelSelect.value, 10);
+    selectedModel = models[index] || null;
+  } else if (psalmSelect.value) {
+    const index = parseInt(psalmSelect.value, 10);
+    selectedModel = psalmModels[index] || null;
+  }
+
+  if (!selectedModel) return;
+
+  customStartInput.value = selectedModel.start || customStartInput.defaultValue;
+  customPatternTextArea.value = selectedModel.default || customPatternTextArea.defaultValue;
+
+  if (selectedModel.type === 'custom') {
+    customOptions.style.display = 'block';
+    if (selectedModel.tom === 'simples') {
+      customSimplesOptions.style.display = 'block';
+      customSoleneOptions.style.display = 'none';
+    } else if (selectedModel.tom === 'solene') {
+      customSimplesOptions.style.display = 'none';
+      customSoleneOptions.style.display = 'block';
     }
+  } else {
+    customOptions.style.display = 'none';
   }
 }
+
 // const chantContainer = document.getElementById('chant-container') as HTMLDivElement;
 function gabcToSvg(gabc: string) {
   if (renderer === null) {
@@ -77,8 +88,16 @@ function gabcToSvg(gabc: string) {
 }
 
 function generate() {
-  const selectedModelIndex = parseInt(modelSelect.value, 10);
-  const selectedModel = models[selectedModelIndex];
+  let selectedModel: Model | null = null;
+
+  if (modelSelect.value) {
+    const index = parseInt(modelSelect.value, 10);
+    selectedModel = models[index] || null;
+  } else if (psalmSelect.value) {
+    const index = parseInt(psalmSelect.value, 10);
+    selectedModel = psalmModels[index] || null;
+  }
+
   const inputText = inputTextArea.value;
 
   if (!selectedModel || !inputText) {
@@ -105,6 +124,7 @@ function generate() {
 }
 
 modelSelect.addEventListener('change', handleModelChange);
+psalmSelect.addEventListener('change', handleModelChange);
 generateButton.addEventListener('click', generate);
 gabcTextArea.addEventListener('input', () => {
   const gabc = gabcTextArea.value;
@@ -117,7 +137,14 @@ models.forEach((model, index) => {
   option.textContent = model.name;
   modelSelect.appendChild(option);
 });
-handleModelChange();
+
+psalmModels.forEach((model, index) => {
+  const option = document.createElement('option');
+  option.value = index.toString();
+  option.textContent = model.name;
+  psalmSelect.appendChild(option);
+});
+handleModelChange;
 
 const exportSvgButton = document.getElementById('export-svg') as HTMLButtonElement;
 const exportPngButton = document.getElementById('export-png') as HTMLButtonElement;
